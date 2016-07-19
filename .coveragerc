@@ -1,0 +1,5 @@
+[run]
+include = dc_traffic_tickets/*
+omit = *migrations*, *tests*
+plugins =
+    django_coverage_plugin
