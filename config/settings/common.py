@@ -46,6 +46,7 @@ LOCAL_APPS = (
     # custom users app
     'dc_traffic_tickets.users.apps.UsersConfig',
     # Your stuff: custom apps go here
+    'api',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
