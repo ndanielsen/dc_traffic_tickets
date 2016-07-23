@@ -51,3 +51,4 @@ django-webpack-loader==0.3.0
 
 # Your custom requirements go here
 djangorestframework==3.4.0
+djangorestframework-gis==0.10
