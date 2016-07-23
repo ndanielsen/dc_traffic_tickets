@@ -9,7 +9,7 @@ class ParkingViolation(models.Model):
     class Meta:
         verbose_name_plural = "Parking Violations"
 
-    location = models.PointField()
+    point = models.PointField()
     objectid = models.IntegerField()
     rowid = models.IntegerField(unique=True)
     holiday = models.BooleanField()

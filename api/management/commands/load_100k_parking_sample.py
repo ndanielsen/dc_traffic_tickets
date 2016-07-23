@@ -27,7 +27,7 @@ class Command(BaseCommand):
         for violation in parking_violations:
             try:
                 obj = ParkingViolation(
-                        location = Point((float(violation.x), float(violation.y))),
+                        point = Point((float(violation.x), float(violation.y))),
                         objectid = violation.objectid,
                         rowid = violation.rowid,
                         holiday = violation.holiday,

@@ -1,8 +1,10 @@
 from rest_framework import serializers
+from rest_framework_gis.serializers import GeoFeatureModelSerializer
 
 from api.models import ParkingViolation
 
-class ParkingViolationSerializer(serializers.HyperlinkedModelSerializer):
+class ParkingViolationSerializer(GeoFeatureModelSerializer):
     class Meta:
         model = ParkingViolation
-        fields = '__all__'
+        geo_field = "point"
+        exclude =  ('address_id', 'streetsegid', 'xcoord', 'ycoord' )
