@@ -58,4 +58,3 @@ services:
 
   redis:
     image: redis:latest
-

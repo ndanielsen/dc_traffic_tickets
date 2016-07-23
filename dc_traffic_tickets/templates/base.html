@@ -1,5 +1,5 @@
 {% load staticfiles i18n %}
-{% load render_bundle from webpack_loader %}<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -19,10 +19,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
 
     <!-- Your stuff: Third-party css libraries go here -->
-    
+
     <!-- This file store project specific CSS -->
     <link href="{% static 'css/project.css' %}" rel="stylesheet">
-    
+
     {% endblock %}
 
   </head>
@@ -103,12 +103,6 @@
 
       <!-- Your stuff: Third-party javascript libraries go here -->
 
-      <!-- Webpack bundles -->
-      {% render_bundle 'vendor' %}
-      {% render_bundle 'common' %}
-      {% render_bundle 'main' %}
-
     {% endblock javascript %}
   </body>
 </html>
- 

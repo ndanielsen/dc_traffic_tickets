@@ -47,6 +47,7 @@ LOCAL_APPS = (
     'dc_traffic_tickets.users.apps.UsersConfig',
     # Your stuff: custom apps go here
     'api',
+    'django.contrib.gis'
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -104,7 +105,7 @@ DATABASES = {
     'default': env.db('DATABASE_URL', default='postgres:///dc_traffic_tickets'),
 }
 DATABASES['default']['ATOMIC_REQUESTS'] = True
-
+DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
 
 # GENERAL CONFIGURATION
 # ------------------------------------------------------------------------------
@@ -235,17 +236,17 @@ AUTOSLUG_SLUGIFY_FUNCTION = 'slugify.slugify'
 # Location of root django.contrib.admin URL, use {% url 'admin:index' %}
 ADMIN_URL = r'^admin/'
 
-# WEBPACK
-# ------------------------------------------------------------------------------
-INSTALLED_APPS += ('webpack_loader',)
-# Webpack Local Stats file
-STATS_FILE = ROOT_DIR('webpack-stats.json')
-# Webpack config
-WEBPACK_LOADER = {
-    'DEFAULT': {
-        'STATS_FILE': STATS_FILE
-    }
-}
+# # WEBPACK
+# # ------------------------------------------------------------------------------
+# INSTALLED_APPS += ('webpack_loader',)
+# # Webpack Local Stats file
+# STATS_FILE = ROOT_DIR('webpack-stats.json')
+# # Webpack config
+# WEBPACK_LOADER = {
+#     'DEFAULT': {
+#         'STATS_FILE': STATS_FILE
+#     }
+# }
 
 
 # Your common stuff: Below this line define 3rd party library settings
