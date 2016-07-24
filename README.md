@@ -12,43 +12,49 @@ Set up Docker on your machine by following the [Docker Docs](https://docs.docker
 
 Once your local docker-machine is up and running:
 
-Clone the github repo on the command line with: `git clone git@github.com:ndanielsen/dc_traffic_tickets.git`
+Clone the github repo on the command line with:
+
+`git clone git@github.com:ndanielsen/dc_traffic_tickets.git`
 
 Move into the directory with:
+
 `cd dc_traffic_tickets`
 
 Build the docker image with:
+
 'docker-compose -f dev.yml build`
 
 This will take a few minutes...
 
 Start django and postgres server with:
+
 'docker-compose -f dev.yml up -d`
 
 Check that it is running with:
+
 `docker-compose ps`
 
 You should see something like this:
->docker-compose ps
-           Name                          Command               State           Ports          
----------------------------------------------------------------------------------------------
-dctraffictickets_django_1     /entrypoint.sh python /app ...   Up      0.0.0.0:8000->8000/tcp
-dctraffictickets_postgres_1   /docker-entrypoint.sh postgres   Up      5432/tcp  
+
+>           Name                          Command               State           Ports          
+> ---------------------------------------------------------------------------------------------
+>
+> dctraffictickets_django_1     /entrypoint.sh python /app ...   Up      0.0.0.0:8000->8000/tcp
+>
+> dctraffictickets_postgres_1   /docker-entrypoint.sh postgres   Up      5432/tcp  
 
 #### Confirm that it is running locally by:
 
-Take note of the ip for your local machine
+Take note of the ip for your local machine:
+
 `docker-machine ip default`
 
-Checkout the IP + ':8000' in your browser
-For example:
-** http://192.168.99.100:8000/
+Checkout the IP + ':8000' in your browser, or example ** http://192.168.99.100:8000/
 
-#### Let's now get our database set up:
-
-Run
+#### Let's now get our database set up with:
 
 `docker-compose -f dev.yml run django python manage.py makemigrations`
+
 `docker-compose -f dev.yml run django python manage.py migrate`
 
 
@@ -61,8 +67,7 @@ Run
 
 `docker-compose -f dev.yml run django python manage.py createsuperuser`
 
-Have a look by navigating to :
-** YOUR_IP:8000/admin
+Have a look by navigating to YOUR_IP:8000/admin
 
 #### Now that we've logged into admin, let's check out the rest api
 

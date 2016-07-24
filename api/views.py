@@ -1,7 +1,10 @@
+from datetime import datetime
+
 from rest_framework import viewsets
 from rest_framework import ISO_8601
 from rest_framework_gis.pagination import GeoJsonPagination
 from rest_framework_gis.filters import DistanceToPointFilter
+from rest_framework.response import Response
 # from rest_framework_gis.filters import TMSTileFilter
 from rest_framework import filters
 from rest_framework import generics
@@ -74,3 +77,14 @@ class ParkingViolationSet(viewsets.ReadOnlyModelViewSet):
 
     class Meta:
         model = ParkingViolation
+
+class ApiStatusViewSet(viewsets.ViewSet):
+    """
+    Endpoint for heartbeat checking, including the status and version.
+    """
+
+    def list(self, request):
+        return Response({
+            "status": "ok",
+            "timestamp": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S.%fZ"),
+        })

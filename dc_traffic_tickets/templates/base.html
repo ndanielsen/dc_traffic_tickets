@@ -46,6 +46,18 @@
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'about' %}">About</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'sandbox1' %}">Sandbox1</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'sandbox2' %}">Sandbox2</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'sandbox3' %}">Sandbox3</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'sandbox4' %}">Sandbox4</a>
+              </li>
             </ul>
 
             <ul class="nav navbar-nav pull-xs-right">
@@ -84,6 +96,8 @@
         <p>Use this document as a way to quick start any new project.</p>
       {% endblock content %}
 
+      {% include 'components/footer.html' %}
+
     </div> <!-- /container -->
 
     {% block modal %}{% endblock modal %}
@@ -102,7 +116,7 @@
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
 
       <!-- Your stuff: Third-party javascript libraries go here -->
-
+      <script src="static/js/project.js"></script>
     {% endblock javascript %}
   </body>
 </html>
