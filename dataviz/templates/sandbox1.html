@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+    {% block title %}
+      Sandbox
+    {% endblock title %}
+
+    {% block css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css" />
+    <link rel="stylesheet" href="static/css/dc-tickets.css" />
+
+    {% endblock %}
+
+    {% block content %}
+    <div class="content">
+      <header><h2>Sandbox1: Your Stuff Goes Here</h1></header>
+    </div>
+
+      {% endblock content %}
+
+
+{% block javascript %}
+{{ block.super }}
+
+<!--  STATIC Content lives in same app folder -->
+<script src="static/js/moving-violations-sampled.js"></script>
+<script src="static/js/leaflet.dc-parking-traffic-heatmap.js"></script>
+
+{% endblock javascript %}

@@ -2,7 +2,7 @@
 {% load static %}
 
     {% block title %}
-      DC Parking/Traffic Tickets Heatmap
+      Sandbox
     {% endblock title %}
 
     {% block css %}
@@ -14,28 +14,19 @@
 
     {% block content %}
     <div class="content">
-      <header><h1 class="h1-header">DC Parking Tickets Heatmap</h1></header>
+      <header><h2>Sandbox2: Your Stuff Goes Here</h1></header>
       <div class="main-content">
         <div id="map"></div>
       </div>
     </div>
-<!--      <footer>
-        <ul>
-          <li><a href="https://github.com/ndanielsen/dc_traffic_data">dc_traffic_data Repository</a></li>
 
-
-<a href="http://leafletjs.com/">Leaflet.js</a>
-<a href="https://github.com/Leaflet/Leaflet.heat">Leaflet.heat</a>
-
-        </ul>
-      </footer> -->
       {% endblock content %}
 
 
 {% block javascript %}
 {{ block.super }}
-<script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
-<script src="http://leaflet.github.io/Leaflet.heat/dist/leaflet-heat.js"></script>
+
+<!--  STATIC Content lives in same app folder -->
 <script src="static/js/moving-violations-sampled.js"></script>
 <script src="static/js/leaflet.dc-parking-traffic-heatmap.js"></script>
 
