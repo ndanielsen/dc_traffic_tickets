@@ -3,6 +3,8 @@ DC Traffic Tickets
 
 Looking at moving violations and parking tickets in DC.
 
+Django with postgres + postgis plus frontend wonderfulness.
+
 Getting Started for Local Development
 ------------
 
@@ -20,7 +22,7 @@ Build the docker image with:
 
 This will take a few minutes...
 
-Start the server with:
+Start django and postgres server with:
 'docker-compose -f dev.yml up -d`
 
 Check that it is running with:
@@ -42,6 +44,13 @@ Checkout the IP + ':8000' in your browser
 For example:
 ** http://192.168.99.100:8000/
 
+#### Let's now get our database set up:
+
+Run
+
+`docker-compose -f dev.yml run django python manage.py makemigrations`
+`docker-compose -f dev.yml run django python manage.py migrate`
+
 
 #### Now that it's runnings, let's seed the database with sample data. This will load 100k randomly selected parking tickets to the database.
 
@@ -59,4 +68,26 @@ Have a look by navigating to :
 
 ** YOUR_IP:8000/api/v1/
 
-Please note that for api calls the page size response is limited to 500 items, otherwise it would be very slow. 
+Please note that for api calls the page size response is limited to 500 items, otherwise it would be very slow.
+
+### Where do I get started? (Front end)
+
+You'll notice on the landing page that there are numbered sandboxes pages for dataviz (or anything that you want to try out)
+
+All front end pieces are located at in the dataviz folder.
+
+Sandbox html pagers are located at dc_traffic_tickets/dataviz/templates
+
+CSS and JS assets are located at dc_traffic_tickets/dataviz/static/
+
+All templates inherit from a base template which is located:
+dc_traffic_tickets/dc_traffic_tickets/templates/base.html
+
+
+### Where do I get started? (Back end)
+
+All the major backend pieces are located in dc_traffic_tickets/api/
+
+Want to add an additional requirement?
+
+Add as appropriate to `requirements/`  and to config/settings/ under installed apps (if necessary)
