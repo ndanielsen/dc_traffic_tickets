@@ -96,3 +96,55 @@ All the major backend pieces are located in dc_traffic_tickets/api/
 Want to add an additional requirement?
 
 Add as appropriate to `requirements/`  and to config/settings/ under installed apps (if necessary)
+
+### API query filters
+
+Example call:
+
+http://192.168.99.100:8000/api/v1/parkingviolations/?rp_plate_state=&violation_code=&holiday=1&body_style=&ticket_date_range_start=&ticket_date_range_end=&ticket_single_date=&ticket_day_of_week=2
+
+
+#### rp_plate_state
+
+Filter by state plate
+
+#### violation_code
+
+Filter by violation code
+
+#### holiday
+
+Self reported holiday (true or false)
+
+### body_style
+
+Vehicle body style
+
+### ticket_date_range_start
+
+query start date
+
+For example all tickets since 2014-02-01
+
+### ticket_date_range_end
+
+query start date
+
+For example all tickets since 2014-03-01
+
+
+### Both ticket_date_range_start and ticket_date_range_end
+
+Date range in a period of time
+
+ticket_date_range_start=2014-02-01&ticket_date_range_end=2014-03-01
+
+
+### ticket_day_of_week
+
+Single day of the week (1-7) starting with Monday as 1
+
+
+### ticket_single_date
+
+Data for one single day such as 2014-03-01
