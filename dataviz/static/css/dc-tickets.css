@@ -1,0 +1,29 @@
+*{margin:0; padding:0; border:none}
+html{overflow-y:scroll}
+body{font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing:antialiased} 
+body:before{content:""; position:fixed; top:20px; left:0; width:100%; height:15px; z-index:100; 
+-webkit-box-shadow:0px 0px 10px rgba(0,0,0,.9); -moz-box-shadow:0px 0px 10px rgba(0,0,0,.9); box-shadow:0px 0px 10px rgba(0,0,0,.9)} /** time to skip prefixes yet?? **/
+.main-content{position:relative; top:35px}
+#map{
+	height:100%; 
+	min-height:600px;
+	height:100%;
+}
+header{position:fixed; height:35px; width:100%; background-color:#fff; z-index:10000}
+.h1-header{
+	text-indent:1em; 
+	height:35px;
+	font:700 22px/35px Georgia, serif;
+	/** line-height:35px;
+	font-weight:700; 
+	font-family:Georgia, serif;
+	font-size:25px; **/
+	color:#000;
+	text-shadow:#333 1px 1px 1px;
+	cursor:pointer;
+	-moz-user-select:none; -webkit-user-select:none; user-select:none; 
+	float:left;
+}
+header:before{content:""; position:fixed; top:-15px; left:0; width:100%; height:15px; z-index:100; -webkit-box-shadow:0px 0px 10px rgba(0,0,0,.9); 
+-moz-box-shadow:0px 0px 10px rgba(0,0,0,.9); box-shadow:0px 0px 10px rgba(0,0,0,.9)} /** time to skip prefixes yet?? **/
+.main-content{position:relative; top:35px}

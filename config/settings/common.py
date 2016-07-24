@@ -39,8 +39,10 @@ THIRD_PARTY_APPS = (
     'allauth',  # registration
     'allauth.account',  # registration
     'allauth.socialaccount',  # registration
+    'django_filters',
     'rest_framework',
     'rest_framework_gis',
+
 )
 
 # Apps specific for this project go here.
@@ -49,6 +51,7 @@ LOCAL_APPS = (
     'dc_traffic_tickets.users.apps.UsersConfig',
     # Your stuff: custom apps go here
     'api',
+    'dataviz',
 
 )
 
@@ -254,6 +257,7 @@ ADMIN_URL = r'^admin/'
 # Your common stuff: Below this line define 3rd party library settings
 
 REST_FRAMEWORK = {
+    # 'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',),
     # 'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
     'PAGE_SIZE': 500
 }
