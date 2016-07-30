@@ -7,6 +7,7 @@ from django.contrib.auth.admin import UserAdmin as AuthUserAdmin
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from .models import User
 
+from rest_framework.authtoken.models import Token
 
 class MyUserChangeForm(UserChangeForm):
     class Meta(UserChangeForm.Meta):
@@ -30,6 +31,19 @@ class MyUserCreationForm(UserCreationForm):
             return username
         raise forms.ValidationError(self.error_messages['duplicate_username'])
 
+from django import forms
+class AuthApiTokenForm(forms.ModelForm):
+    class Meta:
+        model = Token
+        fields = ('key', )
+
+
+
+class AuthApiTokenInline(admin.TabularInline):
+    model = Token
+    form = AuthApiTokenForm
+    extra = 0
+    can_delete = False
 
 @admin.register(User)
 class MyUserAdmin(AuthUserAdmin):
@@ -40,3 +54,4 @@ class MyUserAdmin(AuthUserAdmin):
     ) + AuthUserAdmin.fieldsets
     list_display = ('username', 'name', 'is_superuser')
     search_fields = ['name']
+    inlines = [AuthApiTokenInline]

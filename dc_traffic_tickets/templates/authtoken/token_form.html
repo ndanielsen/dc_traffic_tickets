@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Your API Key{% endblock %}
+
+{% block content %}
+    <h3>API Key</h3>
+
+    <form class="form-horizontal" method="post" action="{% url 'users:apikey' %}">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <div class="control-group">
+          <div class="controls">
+            <button type="submit" name="action" value="reset" class="btn btn-warning">Reset Token</button>
+            <button type="submit" name="action" value="delete"  class="btn btn-danger">Delete Token</button>
+          </div>
+        </div>
+    </form>
+    <br><br>
+
+    {% if form.key.value %}
+
+    <h5>  How to use the API: </h5>
+    <div>
+        <em>Command line: </em>
+        <br>
+        curl -X GET http://192.168.99.100:8000/api/v1/parkingviolations/ -H 'Authorization: Token {{form.key.value}}'
+        <br><br>
+    </div>
+
+      <div>
+          <em>Python with the requests library: </em>
+          <br>
+          import requests <br>
+          import pandas as pd <br>
+          url = 'http://192.168.99.100:8000/api/v1/parkingviolations/' <br>
+          h = {'Authorization': 'Token: {{form.key.value}}'} <br>
+          r = requests.get(url, headers=h) <br>
+          data = r.json() # convert to python dictionary
+          <br><br>
+      </div>
+    {% endif %}
+
+
+{% endblock %}

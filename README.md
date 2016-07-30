@@ -97,6 +97,17 @@ Want to add an additional requirement?
 
 Add as appropriate to `requirements/`  and to config/settings/ under installed apps (if necessary)
 
+### Experimental load all parking data
+
+If you're feeling brave, here's a basic and very slow management command to
+download and all of the parting 12 million rows of data.
+
+** Warning ** it will take minutes to download the large file and potentially a few hours to load and might be missing some rows.
+
+A better command is under Development.
+
+`docker-compose -f dev.yml run django python manage.py load_all_parking_data`
+
 ### API query filters
 
 Example call:
@@ -148,3 +159,14 @@ Single day of the week (1-7) starting with Monday as 1
 ### ticket_single_date
 
 Data for one single day such as 2014-03-01
+
+
+### Production Settings
+
+Get Your Api Token
+
+Using `httpie`
+
+http POST {URL}/api-token-auth/ username='admin' password='whatever'
+
+curl -X GET http://127.0.0.1:8000/api/example/ -H 'Authorization: Token 9944b09199c62bcf9418ad846dd0e4bbdfc6ee4b'

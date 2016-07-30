@@ -7,6 +7,8 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
+from rest_framework.authtoken import views as auth_views
+
 
 urlpatterns = [
     url(r'^', include('dataviz.urls')),
@@ -21,6 +23,7 @@ urlpatterns = [
 
     # Your stuff: custom urls includes go here
     url(r'^api/v1/', include('api.urls')),
+    url(r'^api-token-auth/', auth_views.obtain_auth_token),
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

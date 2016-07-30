@@ -209,3 +209,11 @@ WEBPACK_LOADER = {
 
 
 # Your production stuff: Below this line define 3rd party library settings
+
+### REST FRAMEWORK
+REST_FRAMEWORK['DEFAULT_PERMISSION_CLASSES'] = (
+    'rest_framework.permissions.IsAuthenticated',
+    )
+REST_FRAMEWORK['DEFAULT_AUTHENTICATION_CLASSES'] = (
+    'rest_framework.authentication.TokenAuthentication',
+    )

@@ -33,4 +33,10 @@ urlpatterns = [
         view=views.UserUpdateView.as_view(),
         name='update'
     ),
+    # URL pattern for the UserUpdateView
+    url(
+        regex=r'^~apikey/$',
+        view=views.UserUpdateAPIView.as_view(),
+        name='apikey'
+    ),
 ]
