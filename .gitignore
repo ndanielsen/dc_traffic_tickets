@@ -67,3 +67,5 @@ tests/.hitch
 dc_traffic_tickets/static/dc_traffic_tickets/dist/
 webpack-stats.json
 webpack-stats-production.json
+
+parking_violations.zip
