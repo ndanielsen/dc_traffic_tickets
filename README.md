@@ -163,10 +163,28 @@ Data for one single day such as 2014-03-01
 
 ### Production Settings
 
-Get Your Api Token
+** Create an account on the page **
 
-Using `httpie`
+Your api key is located:
+http://192.168.99.100:8000/users/~apikey/
+
+Also Get Your Api Token using `httpie`
 
 http POST {URL}/api-token-auth/ username='admin' password='whatever'
 
-curl -X GET http://127.0.0.1:8000/api/example/ -H 'Authorization: Token 9944b09199c62bcf9418ad846dd0e4bbdfc6ee4b'
+** Interact with API **
+
+Browseable Api: http://192.168.99.100:8000/api/v1/
+
+***** Command Line *****
+
+curl -X GET http://192.168.99.100:8000/api/v1/parkingviolations/ -H 'Authorization: Token <Your token>'
+
+***** Python with the requests library *****
+
+import requests
+import pandas as pd
+url = 'http://192.168.99.100:8000/api/v1/parkingviolations/'
+h = {'Authorization': 'Token: <Your token>'}
+r = requests.get(url, headers=h)
+data = r.json() # convert to python dictionary
