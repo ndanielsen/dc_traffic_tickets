@@ -159,3 +159,14 @@ Single day of the week (1-7) starting with Monday as 1
 ### ticket_single_date
 
 Data for one single day such as 2014-03-01
+
+
+### Production Settings
+
+Get Your Api Token
+
+Using `httpie`
+
+http POST {URL}/api-token-auth/ username='admin' password='whatever'
+
+curl -X GET http://127.0.0.1:8000/api/example/ -H 'Authorization: Token 9944b09199c62bcf9418ad846dd0e4bbdfc6ee4b'

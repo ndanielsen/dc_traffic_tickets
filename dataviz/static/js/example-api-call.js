@@ -3,8 +3,11 @@
 (function($) {
 
   // Do the CSRf AJAX Modification
+  var apiAuthToken = 'INSERT YOUR TOKEN HERE';
   var csrfToken   = $('input[name="csrfmiddlewaretoken"]').val();
-  $.ajaxSetup({headers: {"X-CSRFToken": csrfToken}});
+  $.ajaxSetup({headers: {"X-CSRFToken": csrfToken,
+      'Authorization': "Token" + apiAuthToken }, 
+    });
 
   // Update the status and the version from the API.
   var statusURL = "/api/v1/status/?format=json";
