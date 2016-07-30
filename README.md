@@ -22,13 +22,13 @@ Move into the directory with:
 
 Build the docker image with:
 
-'docker-compose -f dev.yml build`
+`docker-compose -f dev.yml build`
 
 This will take a few minutes...
 
 Start django and postgres server with:
 
-'docker-compose -f dev.yml up -d`
+`docker-compose -f dev.yml up -d`
 
 Check that it is running with:
 
