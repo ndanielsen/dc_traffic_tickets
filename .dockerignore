@@ -2,3 +2,10 @@
 !.coveragerc
 !.env
 !.pylintrc
+
+
+# Files and dirs to not track in docker to speed up build
+parking_violations.zip
+dataviz/static/maps/
+dc_geo_maps.zip
+parking_violations.zip

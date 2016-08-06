@@ -42,10 +42,6 @@ pytz==2016.6.1
 django-redis==4.4.3
 redis>=2.10.0
 
-
-
-
-
 # Webpack
 django-webpack-loader==0.3.0
 
