@@ -62,12 +62,16 @@ dc_traffic_tickets/media/
 # Hitch directory
 tests/.hitch
 
+# Static root files
+staticfiles/
+
 
 # Webpack
 dc_traffic_tickets/static/dc_traffic_tickets/dist/
 webpack-stats.json
 webpack-stats-production.json
 
+# Files and dirs to not track
 parking_violations.zip
 dataviz/static/maps
 dc_geo_maps.zip
