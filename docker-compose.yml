@@ -34,7 +34,7 @@ services:
       - "0.0.0.0:80:80"
 
     environment:
-      - MY_DOMAIN_NAME=dctraffictickets.info
+      - MY_DOMAIN_NAME=dctraffictickets.net
     ports:
       - "0.0.0.0:80:80"
       - "0.0.0.0:443:443"
