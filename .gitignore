@@ -69,3 +69,5 @@ webpack-stats.json
 webpack-stats-production.json
 
 parking_violations.zip
+dataviz/static/maps
+dc_geo_maps.zip
