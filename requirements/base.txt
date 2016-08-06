@@ -54,3 +54,4 @@ djangorestframework==3.4.0
 djangorestframework-gis==0.10
 django-filter==0.13.0
 django-postgres-copy==0.0.8
+clint==0.5.1
