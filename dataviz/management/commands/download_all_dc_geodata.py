@@ -34,3 +34,4 @@ class Command(BaseCommand):
             zfile = zipfile.ZipFile(self.dc_geo_maps_file)
             zfile.extractall(self.dataviz_static_folder)
             self.stdout.write(self.style.SUCCESS('Unzipped all files in %s' % self.dc_geo_maps_file))
+            os.remove(self.dc_geo_maps_file)
