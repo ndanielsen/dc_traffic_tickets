@@ -1,4 +1,4 @@
-DC Traffic Tickets
+DC Traffic Tickets - https://dctraffictickets.net/
 ==============================
 
 Looking at moving violations and parking tickets in DC.
@@ -50,6 +50,11 @@ Take note of the ip for your local machine:
 `docker-machine ip default`
 
 Checkout the IP + ':8000' in your browser, or example ** http://192.168.99.100:8000/
+
+#### Load Static Data Geojson and Shapefiles
+
+`docker-compose -f dev.yml run django python manage.py download_small_parking_data`
+
 
 #### Let's now get our database set up with:
 
@@ -163,37 +168,33 @@ Data for one single day such as 2014-03-01
 
 ### Production Settings
 
-<<<<<<< HEAD
 #### Create Docker Machine on google app engine
 
-docker-machine create --driver google --google-project dc-traffic-data --google-zone us-east1-b --google-disk-size 15 --google-machine-type  n1-standard-2 traffic --google-disk-size 
+docker-machine create --driver google --google-project dc-traffic-data --google-zone us-east1-b --google-disk-size 15 --google-machine-type  n1-standard-2 traffic --google-disk-size
 
 
-** Create an account on the page **
-=======
-**Create an account on the page**
->>>>>>> b530a519d837b4448c5b1c241d1c0d5b39902e67
+** Create an api throught your account on the page **
 
 Your api key is located:
-http://192.168.99.100:8000/users/~apikey/
+https://dctraffictickets.net/users/~apikey/
 
 Also Get Your Api Token using `httpie`
 
-http POST {URL}/api-token-auth/ username='admin' password='whatever'
+http POST https://dctraffictickets.net/api-token-auth/ username='username' password='whatever'
 
 **Interact with API**
 
-Browseable Api: http://192.168.99.100:8000/api/v1/
+Browseable Api: https://dctraffictickets.net/api/v1/
 
 *****Command Line*****
 
-curl -X GET http://192.168.99.100:8000/api/v1/parkingviolations/ -H 'Authorization: Token <Your token>'
+curl -X GET https://dctraffictickets.net/api/v1/parkingviolations/ -H 'Authorization: Token <Your token>'
 
 *****Python with the requests library*****
 
 import requests
 import pandas as pd
-url = 'http://192.168.99.100:8000/api/v1/parkingviolations/'
+url = 'https://dctraffictickets.net/api/v1/parkingviolations/'
 h = {'Authorization': 'Token: <Your token>'}
 r = requests.get(url, headers=h)
 data = r.json() # convert to python dictionary

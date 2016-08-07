@@ -4,8 +4,81 @@
 !.pylintrc
 
 
-# Files and dirs to not track in docker to speed up build
+### OSX ###
+.DS_Store
+.AppleDouble
+.LSOverride
+
+### SublimeText ###
+# cache files for sublime text
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+
+# workspace files are user-specific
+*.sublime-workspace
+
+# project files should be checked into the repository, unless a significant
+# proportion of contributors will probably not be using SublimeText
+# *.sublime-project
+
+# sftp configuration file
+sftp-config.json
+
+# Basics
+*.py[cod]
+__pycache__
+
+# Logs
+*.log
+pip-log.txt
+
+# Unit test / coverage reports
+.coverage
+.tox
+nosetests.xml
+htmlcov
+
+# Translations
+*.mo
+*.pot
+
+# Pycharm
+.idea/*
+
+
+# Vim
+
+*~
+*.swp
+*.swo
+
+# npm
+node_modules/
+
+# Compass
+.sass-cache
+
+# virtual environments
+.env
+
+# User-uploaded media
+dc_traffic_tickets/media/
+
+# Hitch directory
+tests/.hitch
+
+# Static root files
+staticfiles/
+
+
+# Webpack
+dc_traffic_tickets/static/dc_traffic_tickets/dist/
+webpack-stats.json
+webpack-stats-production.json
+
+# Files and dirs to not track
 parking_violations.zip
-dataviz/static/maps/
+dataviz/static/maps
+dataviz/static/data
 dc_geo_maps.zip
-parking_violations.zip
