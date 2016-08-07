@@ -163,6 +163,11 @@ Data for one single day such as 2014-03-01
 
 ### Production Settings
 
+#### Create Docker Machine on google app engine
+
+docker-machine create --driver google --google-project dc-traffic-data --google-zone us-east1-b --google-disk-size 15 --google-machine-type  n1-standard-2 traffic --google-disk-size 
+
+
 ** Create an account on the page **
 
 Your api key is located:

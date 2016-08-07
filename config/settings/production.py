@@ -56,7 +56,7 @@ X_FRAME_OPTIONS = 'DENY'
 # ------------------------------------------------------------------------------
 # Hosts/domain names that are valid for this site
 # See https://docs.djangoproject.com/en/1.6/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=['dctraffictickets.info'])
+ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=['dctraffictickets.net'])
 # END SITE CONFIGURATION
 
 INSTALLED_APPS += ('gunicorn', )
@@ -102,7 +102,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # EMAIL
 # ------------------------------------------------------------------------------
 DEFAULT_FROM_EMAIL = env('DJANGO_DEFAULT_FROM_EMAIL',
-                         default='DC Traffic Tickets <noreply@dctraffictickets.info>')
+                         default='DC Traffic Tickets <noreply@dctraffictickets.net>')
 EMAIL_SUBJECT_PREFIX = env('DJANGO_EMAIL_SUBJECT_PREFIX', default='[DC Traffic Tickets] ')
 SERVER_EMAIL = env('DJANGO_SERVER_EMAIL', default=DEFAULT_FROM_EMAIL)
 
@@ -125,7 +125,18 @@ TEMPLATES[0]['OPTIONS']['loaders'] = [
 # DATABASE CONFIGURATION
 # ------------------------------------------------------------------------------
 # Raises ImproperlyConfigured exception if DATABASE_URL not in os.environ
-DATABASES['default'] = env.db('DATABASE_URL')
+
+# uncomment when a real db is set up
+# DATABASES['default'] = env.db('DATABASE_URL')
+
+DATABASES = {
+    # Raises ImproperlyConfigured exception if DATABASE_URL not in os.environ
+    'default': env.db('DATABASE_URL', default='postgres:///dc_traffic_tickets'),
+}
+DATABASES['default']['ATOMIC_REQUESTS'] = True
+DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
+
+
 
 # CACHING
 # ------------------------------------------------------------------------------

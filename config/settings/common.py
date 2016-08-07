@@ -39,11 +39,6 @@ THIRD_PARTY_APPS = (
     'allauth',  # registration
     'allauth.account',  # registration
     'allauth.socialaccount',  # registration
-    'django_filters',
-    'rest_framework',
-    'rest_framework_gis',
-    'rest_framework.authtoken',
-
 )
 
 # Apps specific for this project go here.
@@ -51,6 +46,10 @@ LOCAL_APPS = (
     # custom users app
     'dc_traffic_tickets.users.apps.UsersConfig',
     # Your stuff: custom apps go here
+    'django_filters',
+    'rest_framework',
+    'rest_framework_gis',
+    'rest_framework.authtoken',
     'api',
     'dataviz',
 

@@ -11,7 +11,6 @@ from rest_framework.authtoken import views as auth_views
 
 
 urlpatterns = [
-    url(r'^', include('dataviz.urls')),
     url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name='about'),
 
     # Django Admin, use {% url 'admin:index' %}
@@ -22,6 +21,7 @@ urlpatterns = [
     url(r'^accounts/', include('allauth.urls')),
 
     # Your stuff: custom urls includes go here
+    url(r'^', include('dataviz.urls')),
     url(r'^api/v1/', include('api.urls')),
     url(r'^api-token-auth/', auth_views.obtain_auth_token),
 

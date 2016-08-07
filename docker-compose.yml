@@ -23,15 +23,17 @@ services:
     command: /gunicorn.sh
     env_file: .env
 
-  nginx:
-    build: ./compose/nginx
+  redis:
+    image: redis:latest
+
+  nginx-secure:
+    build: ./compose/nginx-secure
     depends_on:
       - django
-
       - certbot
 
     ports:
-      - "0.0.0.0:80:80"
+      - "0.0.0.0:5000:80"
 
     environment:
       - MY_DOMAIN_NAME=dctraffictickets.net
@@ -44,7 +46,8 @@ services:
 
   certbot:
     image: quay.io/letsencrypt/letsencrypt
-    command: bash -c "sleep 6 && certbot certonly -n --standalone -d dctraffictickets.info --text --agree-tos --email nathan.danielsen@gmail.com --server https://acme-v01.api.letsencrypt.org/directory --rsa-key-size 4096 --verbose --keep-until-expiring --standalone-supported-challenges http-01"
+    # command: bash -c "sleep 6 && certbot certonly -n --standalone -d dctraffictickets.net -d www.dctraffictickets.net --text --agree-tos --email nathan.danielsen@gmail.com --server https://acme-staging.api.letsencrypt.org/directory --rsa-key-size 4096 --verbose --keep-until-expiring --standalone-supported-challenges http-01"
+    command: bash -c "sleep 6 && certbot certonly -n --standalone -d dctraffictickets.net -d www.dctraffictickets.net --text --agree-tos --email nathan.danielsen@gmail.com --server https://acme-v01.api.letsencrypt.org/directory --rsa-key-size 4096 --verbose --keep-until-expiring --standalone-supported-challenges http-01"
     entrypoint: ""
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt
@@ -54,7 +57,3 @@ services:
       - "443"
     environment:
       - TERM=xterm
-
-
-  redis:
-    image: redis:latest
