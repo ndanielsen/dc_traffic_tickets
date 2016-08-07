@@ -11,7 +11,7 @@ class Command(BaseCommand):
     help = "Downloads all geojson files in DC Open Data and adds them to static files in dataviz"
 
     def handle(self, *args, **options):
-        self.dc_geo_maps_file = os.path.join(settings.ROOT_DIR.root, 'dataviz/static/dc_geo_maps.zip')
+        self.dc_geo_maps_file = os.path.join(settings.ROOT_DIR.root, 'dataviz/static/traffic_maps.zip')
         self.dataviz_static_folder = os.path.join(settings.ROOT_DIR.root, 'dataviz/static/')
         if not os.path.isfile(self.dc_geo_maps_file):
             self.stdout.write(self.style.ERROR('Warning, this might take awhile depending on your internet connection'))
@@ -22,6 +22,7 @@ class Command(BaseCommand):
                 self.stdout.write(self.style.ERROR('ERROR'))
 
             else:
+                self.stdout.write(self.style.INFO('Downloading %s' % self.dc_geo_maps_file))
                 with open(self.dc_geo_maps_file, 'wb') as handle:
                     total_length = int(response.headers.get('content-length')) / 1024 + 1
                     # Override the expected_size, for iterables that don't support len()
