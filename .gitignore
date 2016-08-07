@@ -74,4 +74,5 @@ webpack-stats-production.json
 # Files and dirs to not track
 parking_violations.zip
 dataviz/static/maps
+dataviz/static/data
 dc_geo_maps.zip

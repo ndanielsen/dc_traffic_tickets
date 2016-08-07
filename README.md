@@ -51,6 +51,11 @@ Take note of the ip for your local machine:
 
 Checkout the IP + ':8000' in your browser, or example ** http://192.168.99.100:8000/
 
+#### Load Static Data Geojson and Shapefiles
+
+`docker-compose -f dev.yml run django python manage.py download_small_parking_data`
+
+
 #### Let's now get our database set up with:
 
 `docker-compose -f dev.yml run django python manage.py makemigrations`
@@ -165,10 +170,10 @@ Data for one single day such as 2014-03-01
 
 #### Create Docker Machine on google app engine
 
-docker-machine create --driver google --google-project dc-traffic-data --google-zone us-east1-b --google-disk-size 15 --google-machine-type  n1-standard-2 traffic --google-disk-size 
+docker-machine create --driver google --google-project dc-traffic-data --google-zone us-east1-b --google-disk-size 15 --google-machine-type  n1-standard-2 traffic --google-disk-size
 
-
-** Create an account on the page **
+**Create an account on the page**
+>>>>>>> b530a519d837b4448c5b1c241d1c0d5b39902e67
 
 Your api key is located:
 http://192.168.99.100:8000/users/~apikey/
@@ -177,15 +182,15 @@ Also Get Your Api Token using `httpie`
 
 http POST {URL}/api-token-auth/ username='admin' password='whatever'
 
-** Interact with API **
+**Interact with API**
 
 Browseable Api: http://192.168.99.100:8000/api/v1/
 
-***** Command Line *****
+*****Command Line*****
 
 curl -X GET http://192.168.99.100:8000/api/v1/parkingviolations/ -H 'Authorization: Token <Your token>'
 
-***** Python with the requests library *****
+*****Python with the requests library*****
 
 import requests
 import pandas as pd
