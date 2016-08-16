@@ -1,4 +1,4 @@
-DC Traffic Tickets - https://dctraffictickets.net/
+DC Traffic Tickets - https://www.dctraffictickets.net/
 ==============================
 
 Looking at moving violations and parking tickets in DC.
@@ -19,6 +19,10 @@ Clone the github repo on the command line with:
 Move into the directory with:
 
 `cd dc_traffic_tickets`
+
+Copy environment variable settings:
+
+`cp sample.env .env`
 
 Build the docker image with:
 
