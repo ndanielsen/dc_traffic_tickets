@@ -109,8 +109,11 @@ SERVER_EMAIL = env('DJANGO_SERVER_EMAIL', default=DEFAULT_FROM_EMAIL)
 # Anymail with Mailgun
 INSTALLED_APPS += ("anymail", )
 ANYMAIL = {
-    "MAILGUN_API_KEY": env('DJANGO_MAILGUN_API_KEY'),
+    "MAILGUN_API_KEY": env('MAILGUN_API_KEY'),
+    "MAILGUN_SENDER_DOMAIN":  env('MAILGUN_SENDER_DOMAIN'),
 }
+DEFAULT_FROM_EMAIL = "noreply@m.dctraffictickets.net"
+
 EMAIL_BACKEND = "anymail.backends.mailgun.MailgunBackend"
 
 # TEMPLATE CONFIGURATION
@@ -126,13 +129,11 @@ TEMPLATES[0]['OPTIONS']['loaders'] = [
 # ------------------------------------------------------------------------------
 # Raises ImproperlyConfigured exception if DATABASE_URL not in os.environ
 
-# uncomment when a real db is set up
-# DATABASES['default'] = env.db('DATABASE_URL')
-
 DATABASES = {
     # Raises ImproperlyConfigured exception if DATABASE_URL not in os.environ
     'default': env.db('DATABASE_URL', default='postgres:///dc_traffic_tickets'),
 }
+
 DATABASES['default']['ATOMIC_REQUESTS'] = True
 DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
 
@@ -222,9 +223,9 @@ WEBPACK_LOADER = {
 # Your production stuff: Below this line define 3rd party library settings
 
 ### REST FRAMEWORK
-REST_FRAMEWORK['DEFAULT_PERMISSION_CLASSES'] = (
-    'rest_framework.permissions.IsAuthenticated',
-    )
+# REST_FRAMEWORK['DEFAULT_PERMISSION_CLASSES'] = (
+#     'rest_framework.permissions.IsAuthenticated',
+#     )
 REST_FRAMEWORK['DEFAULT_AUTHENTICATION_CLASSES'] = (
     'rest_framework.authentication.TokenAuthentication',
     )
