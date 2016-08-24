@@ -6,37 +6,29 @@
     {% endblock title %}
 
     {% block css %}
+    <link rel="stylesheet" href="{% static 'css/dc-tickets.css' %}" />
+    <link rel="stylesheet" href="{% static 'leaflet/leaflet.css' %}" />
     {{ block.super }}
-    <link rel="stylesheet" href="static/leaflet/leaflet.css" />
-    <link rel="stylesheet" href="static/css/dc-tickets.css" />
-
     {% endblock %}
 
     {% block content %}
-    <div class="content">
-      <header><h1 class="h1-header">DC Parking Tickets Heatmap</h1></header>
-      <div class="main-content">
-        <div id="map"></div>
+      <div class="content">
+        <header><h1 class="h1-header">DC Parking Tickets Heatmap</h1></header>
+        <div class="main-content">
+          <div id="map"></div>
+        </div>
       </div>
-    </div>
-<!--      <footer>
-        <ul>
-          <li><a href="https://github.com/ndanielsen/dc_traffic_data">dc_traffic_data Repository</a></li>
-
-
-<a href="http://leafletjs.com/">Leaflet.js</a>
-<a href="https://github.com/Leaflet/Leaflet.heat">Leaflet.heat</a>
-
-        </ul>
-      </footer> -->
-      {% endblock content %}
+    {% endblock content %}
 
 
 {% block javascript %}
 {{ block.super }}
-<script src="static/leaflet/leaflet.js"></script>
-<script src="static/leaflet/leaflet-heat.js"></script>
-<script src="static/js/moving-violations-sampled.js"></script>
-<script src="static/js/leaflet.dc-parking-traffic-heatmap.js"></script>
+
+<script src="{% static 'leaflet/leaflet.js' %}"></script>
+<script src="{% static 'leaflet/leaflet-heat.js' %}"></script>
+<script src="{% static 'js/moving-violations-sampled.js' %}"></script>
+<script src="{% static 'js/leaflet.dc-parking-traffic-heatmap.js' %}"></script>
+
+
 
 {% endblock javascript %}

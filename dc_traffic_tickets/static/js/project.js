@@ -1,5 +1,4 @@
 /* Project specific Javascript goes here. */
-
 (function($) {
 
   // Do the CSRf AJAX Modification

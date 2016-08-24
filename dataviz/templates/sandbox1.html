@@ -7,27 +7,25 @@
 
     {% block css %}
     {{ block.super }}
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css" />
-    <link rel="stylesheet" href="static/css/dc-tickets.css" />
-
+    <link rel="stylesheet" href="{% static 'leaflet/leaflet.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/dc-tickets.css' %}" />
     {% endblock %}
 
     {% block content %}
-    <div class="content">
-      <header><h2>Sandbox1: Your Stuff Goes Here</h1></header>
-    </div>
-
-        {% include 'sandboxfiller.html' %}
-        {% include 'staticdata.html' %}
-
-      {% endblock content %}
+      <div class="content">
+        <header><h1 class="h1-header">DC Parking Tickets on for DC Plated Cars on 2013-12-26</h1></header>
+        <div class="main-content">
+          <div id="map"></div>
+        </div>
+      </div>
+    {% endblock content %}
 
 
 {% block javascript %}
 {{ block.super }}
 
 <!--  STATIC Content lives in same app folder -->
-<script src="static/js/moving-violations-sampled.js"></script>
-<script src="static/js/leaflet.dc-parking-traffic-heatmap.js"></script>
+<script src="{% static 'leaflet/leaflet.js' %}"></script>
+<script src="{% static 'js/api-call.js' %}"></script>
 
 {% endblock javascript %}
