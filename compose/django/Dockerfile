@@ -28,4 +28,5 @@ RUN sed -i 's/\r//' /entrypoint.sh \
 
 WORKDIR /app
 
-ENTRYPOINT ["/entrypoint.sh"]
+# no entry point on production settings as it messes with env files
+# ENTRYPOINT ["/entrypoint.sh"]

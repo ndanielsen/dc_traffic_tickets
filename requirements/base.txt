@@ -5,7 +5,7 @@
 wheel==0.29.0
 
 # Bleeding edge Django
-django==1.9.7
+django==1.10
 
 # Configuration
 django-environ==0.4.0
@@ -51,3 +51,4 @@ djangorestframework-gis==0.10
 django-filter==0.13.0
 django-postgres-copy==0.0.8
 clint==0.5.1
+django-cachalot==1.2.1
