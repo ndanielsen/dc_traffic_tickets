@@ -40,6 +40,7 @@ THIRD_PARTY_APPS = (
     'allauth.account',  # registration
     'allauth.socialaccount',  # registration
     'cachalot', # caching plug in
+    'leaflet',
 )
 
 # Apps specific for this project go here.
@@ -250,4 +251,11 @@ ADMIN_URL = r'^admin/'
 
 REST_FRAMEWORK = {
     'PAGE_SIZE': 500
+}
+
+LEAFLET_CONFIG = {
+  'DEFAULT_CENTER': (38.911206,-77.028961),
+  'DEFAULT_ZOOM': 13,
+  'MIN_ZOOM': 1,
+  'MAX_ZOOM': 20,
 }

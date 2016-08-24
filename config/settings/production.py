@@ -102,7 +102,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # EMAIL
 # ------------------------------------------------------------------------------
 DEFAULT_FROM_EMAIL = env('DJANGO_DEFAULT_FROM_EMAIL',
-                         default='DC Traffic Tickets <noreply@dctraffictickets.net>')
+                         default='DC Traffic Tickets <noreply@m.dctraffictickets.net>')
 EMAIL_SUBJECT_PREFIX = env('DJANGO_EMAIL_SUBJECT_PREFIX', default='[DC Traffic Tickets] ')
 SERVER_EMAIL = env('DJANGO_SERVER_EMAIL', default=DEFAULT_FROM_EMAIL)
 
@@ -210,14 +210,14 @@ ADMIN_URL = env('DJANGO_ADMIN_URL')
 # WEBPACK
 # ------------------------------------------------------------------------------
 # Webpack Production Stats file
-STATS_FILE = ROOT_DIR('webpack-stats-production.json')
-# Webpack config
-WEBPACK_LOADER = {
-    'DEFAULT': {
-        'BUNDLE_DIR_NAME': 'dc_traffic_tickets/static/dc_traffic_tickets/dist/',
-        'STATS_FILE': STATS_FILE
-    }
-}
+# STATS_FILE = ROOT_DIR('webpack-stats-production.json')
+# # Webpack config
+# WEBPACK_LOADER = {
+#     'DEFAULT': {
+#         'BUNDLE_DIR_NAME': 'dc_traffic_tickets/static/dc_traffic_tickets/dist/',
+#         'STATS_FILE': STATS_FILE
+#     }
+# }
 
 
 # Your production stuff: Below this line define 3rd party library settings

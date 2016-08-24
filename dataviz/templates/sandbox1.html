@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load leaflet_tags %}
 
     {% block title %}
       Sandbox
@@ -7,8 +8,14 @@
 
     {% block css %}
     {{ block.super }}
-    <link rel="stylesheet" href="{% static 'leaflet/leaflet.css' %}" />
+
     <link rel="stylesheet" href="{% static 'css/dc-tickets.css' %}" />
+    {% leaflet_css %}
+     <style media="screen">
+       #dc { width:100%; height:100% }
+     </style>
+
+
     {% endblock %}
 
     {% block content %}
@@ -18,6 +25,7 @@
           <div id="map"></div>
         </div>
       </div>
+      {% leaflet_map "dc" %}
     {% endblock content %}
 
 
@@ -25,7 +33,7 @@
 {{ block.super }}
 
 <!--  STATIC Content lives in same app folder -->
-<script src="{% static 'leaflet/leaflet.js' %}"></script>
+{% leaflet_js %}
 <script src="{% static 'js/api-call.js' %}"></script>
 
 {% endblock javascript %}
