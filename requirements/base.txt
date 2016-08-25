@@ -52,3 +52,4 @@ django-filter==0.13.0
 django-postgres-copy==0.0.8
 clint==0.5.1
 django-cachalot==1.2.1
+django-leaflet==0.19.0

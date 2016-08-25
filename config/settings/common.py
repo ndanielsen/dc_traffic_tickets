@@ -40,6 +40,7 @@ THIRD_PARTY_APPS = (
     'allauth.account',  # registration
     'allauth.socialaccount',  # registration
     'cachalot', # caching plug in
+    'leaflet'
 )
 
 # Apps specific for this project go here.
@@ -250,4 +251,19 @@ ADMIN_URL = r'^admin/'
 
 REST_FRAMEWORK = {
     'PAGE_SIZE': 500
+}
+
+
+LEAFLET_CONFIG = {
+    # conf here
+    'TILES': 'https://a.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    'ATTRIBUTION_PREFIX': 'Powered by django-leaflet and DC Open Data Portal',
+    'SCALE': 'both',
+    'SPATIAL_EXTENT': (-77.193339, 38.783691, -76.83306, 39.016687),
+    'DEFAULT_CENTER': (38.9046, -77.0238),
+    'DEFAULT_ZOOM': 13,
+    'MIN_ZOOM': 12,
+    'MAX_ZOOM': 18,
+    'MINIMAP': True,
+    'FORCE_IMAGE_PATH': True,
 }
