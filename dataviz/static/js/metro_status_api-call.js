@@ -8,16 +8,16 @@ function onEachFeature(feature, layer) {
 }
 
 function styleFunction(feature){
-  switch (feature.geometry.type) {
+  switch (feature.properties.type) {
     case 'LineString':
       return {color: "red"};
       break;
     case 'Polygon':
-      return {color: 'green', weight:1, fillOpacity:.1};
+      return {color: 'purple'};
       break;
 
-    case 'Feature':
-      return {color: 'purple'};
+    default:
+      return {color: 'green'};
       break;
   }
 }
@@ -29,8 +29,6 @@ function sleep (time) {
 }
 
 function static_ajax_request(url, map){
-
-
 
   var csrfToken   = $('input[name="csrfmiddlewaretoken"]').val();
   $.ajaxSetup({headers: {"X-CSRFToken": csrfToken}});
@@ -47,23 +45,13 @@ function static_ajax_request(url, map){
      dataType: 'json',
      success: function(data) {
        console.log(data);
-       var geoJsonLayer = L.geoJson(data, {onEachFeature: onEachFeature, style: styleFunction}).addTo(map);
-       function newStyle(){
-         geoJsonLayer.setStyle({color: 'green'})
-       }
-        geoJsonLayer.on('mouseover', newStyle);
-        geoJsonLayer.on('mouseout', function(e){geoJsonLayer.resetStyle(e.target)})
+       var geojsonlayer = L.geoJson(data, {onEachFeature: onEachFeature, style: styleFunction}).addTo(map);
      }
    });
 }
 
-
-
-
-
 function map_init_basic(map, options) {
   console.log('js loaded');
-  static_ajax_request('../static/data/dpw-parking-beats.geojson', map)
-
+  static_ajax_request('../static/data/data.geojson', map)
 
 }
