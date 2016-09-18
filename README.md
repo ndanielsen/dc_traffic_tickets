@@ -180,25 +180,28 @@ docker-machine create --driver google --google-project dc-traffic-data --google-
 ** Create an api throught your account on the page **
 
 Your api key is located:
-https://dctraffictickets.net/users/~apikey/
+https://www.dctraffictickets.net/users/~apikey/
 
 Also Get Your Api Token using `httpie`
 
-http POST https://dctraffictickets.net/api-token-auth/ username='username' password='whatever'
+http POST https://www.dctraffictickets.net/api-token-auth/ username='username' password='whatever'
 
 **Interact with API**
 
-Browseable Api: https://dctraffictickets.net/api/v1/
+Browseable Api: https://www.dctraffictickets.net/api/v1/
 
 *****Command Line*****
 
-curl -X GET https://dctraffictickets.net/api/v1/parkingviolations/ -H 'Authorization: Token <Your token>'
+curl -X GET https://www.dctraffictickets.net/api/v1/parkingviolations/ -H 'Authorization: Token <Your token>'
 
 *****Python with the requests library*****
 
 import requests
 import pandas as pd
-url = 'https://dctraffictickets.net/api/v1/parkingviolations/'
+url = 'https://www.dctraffictickets.net/api/v1/parkingviolations/'
 h = {'Authorization': 'Token: <Your token>'}
 r = requests.get(url, headers=h)
 data = r.json() # convert to python dictionary
+
+**** Get Nearest Parking Violations ****
+`curl -X POST https://www.dctraffictickets.net/api/v1/nearest/ -H 'Authorization: Token <Your token>' -d "lat=38.90216&long=-77.02286"`
