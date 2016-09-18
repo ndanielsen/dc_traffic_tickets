@@ -11,7 +11,7 @@ class ParkingViolation(models.Model):
 
     point = models.PointField()
     objectid = models.IntegerField()
-    rowid = models.IntegerField(unique=True)
+    rowid = models.IntegerField() #unique=True)
     holiday = models.BooleanField()
     violation_code = models.CharField(max_length=10, db_index=True)
     violation_description = models.CharField(max_length=256)
@@ -27,3 +27,15 @@ class ParkingViolation(models.Model):
 
     def __str__(self):
         return str(self.ticket_issue_datetime)
+
+class ParkingViolationDataFiles(models.Model):
+    class Meta:
+        verbose_name_plural = "Parking Violations Datasets"
+
+    filename = models.CharField(max_length=100, blank=False)
+    url = models.URLField(blank=False)
+    imported = models.BooleanField(default=False)
+    date_added = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return str(self.filename)

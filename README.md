@@ -97,6 +97,13 @@ CSS and JS assets are located at dc_traffic_tickets/dataviz/static/
 All templates inherit from a base template which is located:
 dc_traffic_tickets/dc_traffic_tickets/templates/base.html
 
+### Load a new csv file from dc opendata
+
+#### Load the May 2016 data dump
+
+`docker-compose -f dev.yml run django python manage.py load_new_csv --filename parking_violations_may_2016 --url http://opendata.dc.gov/datasets/b86079c597e14bc199f2fff0025a1f77_4.csv`
+
+
 
 ### Where do I get started? (Back end)
 
