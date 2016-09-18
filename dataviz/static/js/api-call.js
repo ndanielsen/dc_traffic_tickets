@@ -1,69 +1,42 @@
 /* Project specific Javascript goes here. */
+var csrfToken   = $('input[name="csrfmiddlewaretoken"]').val();
+$.ajaxSetup({headers: {"X-CSRFToken": csrfToken}});
+
+var mapPoints;
+
+var map = L.map('map').setView([38.911206,-77.028961], 13);
+
+mapLink =
+    '<a href="http://openstreetmap.org">OpenStreetMap</a>';
+L.tileLayer(
+    'https://a.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; ' + mapLink + ' Contributors',
+    maxZoom: 18,
+}).addTo(map);
+
 
 function onEachFeature(feature, layer) {
     // does this feature have a property named popupContent?
-    if (feature.properties && feature.properties.issues) {
-        layer.bindPopup("<h2>" + feature.properties.name + "</h2>" + "<p>" + feature.properties.issues + "</p>");
+    if (feature.properties && feature.properties.violation_code) {
+        layer.bindPopup(feature.properties.violation_code);
     }
 }
 
-function styleFunction(feature){
-  switch (feature.geometry.type) {
-    case 'LineString':
-      return {color: "red"};
-      break;
-    case 'Polygon':
-      return {color: 'green', weight:1, fillOpacity:.1};
-      break;
 
-    case 'Feature':
-      return {color: 'purple'};
-      break;
-  }
-}
-
-
-
-function sleep (time) {
-  return new Promise((resolve) => setTimeout(resolve, time));
-}
-
-function static_ajax_request(url, map){
-
-
-
-  var csrfToken   = $('input[name="csrfmiddlewaretoken"]').val();
-  $.ajaxSetup({headers: {"X-CSRFToken": csrfToken}});
-
-  $.ajax({
-     type: 'GET',
-     url: url,
-     data: {
-        format: 'json'
-     },
-     error: function() {
-        console.log('error');
-     },
-     dataType: 'json',
-     success: function(data) {
-       console.log(data);
-       var geoJsonLayer = L.geoJson(data, {onEachFeature: onEachFeature, style: styleFunction}).addTo(map);
-       function newStyle(){
-         geoJsonLayer.setStyle({color: 'green'})
-       }
-        geoJsonLayer.on('mouseover', newStyle);
-        geoJsonLayer.on('mouseout', function(e){geoJsonLayer.resetStyle(e.target)})
-     }
-   });
-}
-
-
-
-
-
-function map_init_basic(map, options) {
-  console.log('js loaded');
-  static_ajax_request('../static/data/dpw-parking-beats.geojson', map)
-
-
-}
+$.ajax({
+   url: '../api/v1/parkingviolations/?rp_plate_state=DC&ticket_single_date=2013-12-26',
+   data: {
+      format: 'json'
+   },
+   error: function() {
+      console.log('error');
+   },
+   dataType: 'json',
+   success: function(data) {
+      var mapPoints = data.results;
+      var myLayer = L.geoJson(mapPoints,{
+          onEachFeature: onEachFeature
+    } ).addTo(map);
+   },
+   type: 'GET'
+});

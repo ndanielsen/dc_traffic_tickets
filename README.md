@@ -97,6 +97,13 @@ CSS and JS assets are located at dc_traffic_tickets/dataviz/static/
 All templates inherit from a base template which is located:
 dc_traffic_tickets/dc_traffic_tickets/templates/base.html
 
+### Load a new csv file from dc opendata
+
+#### Load the May 2016 data dump
+
+`docker-compose -f dev.yml run django python manage.py load_new_csv --filename parking_violations_may_2016 --url http://opendata.dc.gov/datasets/b86079c597e14bc199f2fff0025a1f77_4.csv`
+
+
 
 ### Where do I get started? (Back end)
 
@@ -180,25 +187,28 @@ docker-machine create --driver google --google-project dc-traffic-data --google-
 ** Create an api throught your account on the page **
 
 Your api key is located:
-https://dctraffictickets.net/users/~apikey/
+https://www.dctraffictickets.net/users/~apikey/
 
 Also Get Your Api Token using `httpie`
 
-http POST https://dctraffictickets.net/api-token-auth/ username='username' password='whatever'
+http POST https://www.dctraffictickets.net/api-token-auth/ username='username' password='whatever'
 
 **Interact with API**
 
-Browseable Api: https://dctraffictickets.net/api/v1/
+Browseable Api: https://www.dctraffictickets.net/api/v1/
 
 *****Command Line*****
 
-curl -X GET https://dctraffictickets.net/api/v1/parkingviolations/ -H 'Authorization: Token <Your token>'
+curl -X GET https://www.dctraffictickets.net/api/v1/parkingviolations/ -H 'Authorization: Token <Your token>'
 
 *****Python with the requests library*****
 
 import requests
 import pandas as pd
-url = 'https://dctraffictickets.net/api/v1/parkingviolations/'
+url = 'https://www.dctraffictickets.net/api/v1/parkingviolations/'
 h = {'Authorization': 'Token: <Your token>'}
 r = requests.get(url, headers=h)
 data = r.json() # convert to python dictionary
+
+**** Get Nearest Parking Violations ****
+`curl -X POST https://www.dctraffictickets.net/api/v1/nearest/ -H 'Authorization: Token <Your token>' -d "lat=38.90216&long=-77.02286"`

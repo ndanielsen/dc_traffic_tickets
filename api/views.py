@@ -17,6 +17,8 @@ from api.models import ParkingViolation
 from api.filters import IsoDateTimeField
 import django_filters
 from django.utils.encoding import force_bytes, force_str, force_text
+from django.contrib.gis.geos import Point
+from django.contrib.gis.db.models.functions import Distance
 
 
 def day_of_week_action(queryset, value):
@@ -78,7 +80,7 @@ class ParkingViolationSet(viewsets.ReadOnlyModelViewSet):
     class Meta:
         model = ParkingViolation
 
-class ApiStatusViewSet(viewsets.ViewSet):
+class ApiStatusViewSet(viewsets.ReadOnlyModelViewSet):
     """
     Endpoint for heartbeat checking, including the status and version.
     """
@@ -88,3 +90,33 @@ class ApiStatusViewSet(viewsets.ViewSet):
             "status": "ok",
             "timestamp": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S.%fZ"),
         })
+
+class ParkingViolationsNearProximity(viewsets.ReadOnlyModelViewSet):
+    queryset = ParkingViolation.objects.all()
+    serializer_class = serializers.ParkingViolationSerializer
+    class Meta:
+        model = ParkingViolation
+
+    def post(self, request, *args, **kwargs):
+        raw_queryset = self.get_queryset()
+        lat_long = request.POST
+
+        if lat_long == None:
+            return Response({'status':'bad request'})
+
+        latitude = float(lat_long['lat'])
+        longitude = float(lat_long['long'])
+
+        pnt = Point(longitude, latitude, srid=4326)
+        # location = Point(float(lat_long['long']), float(lat_long['lat']), srid=4326)
+
+        # queryset = ParkingViolation.objects.filter(point__distance_lte=(location, Distance(km=1))) #.order_by('distance')[:100]
+        queryset = ParkingViolation.objects.all().filter(point__distance_lte=(pnt, 10))
+
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
