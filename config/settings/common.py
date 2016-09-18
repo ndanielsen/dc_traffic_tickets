@@ -258,16 +258,25 @@ REST_FRAMEWORK = {
 
 LEAFLET_CONFIG = {
     # conf here
-    'TILES': 'https://a.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    'TILES': 'https://stamen-tiles.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.png',
+    # 'TILES': 'https://a.tile.openstreetmap.org/{z}/{x}/{y}.png',
     'ATTRIBUTION_PREFIX': 'Powered by django-leaflet and DC Open Data Portal',
     'SCALE': 'both',
     'SPATIAL_EXTENT': (-77.193339, 38.783691, -76.83306, 39.016687),
     'DEFAULT_CENTER': (38.9046, -77.0238),
-    'DEFAULT_ZOOM': 13,
-    'MIN_ZOOM': 12,
+    'DEFAULT_ZOOM': 8,
+    'MIN_ZOOM': 10,
     'MAX_ZOOM': 18,
-    'MINIMAP': True,
-    'FORCE_IMAGE_PATH': True,
+    # 'MINIMAP': True,
+    # 'FORCE_IMAGE_PATH': True,
+    # 'PLUGINS': {
+    #     'name-of-plugin': {
+    #         'css': ['relative/path/to/stylesheet.css', '/root/path/to/stylesheet.css'],
+    #         'js': 'http://absolute-url.example.com/path/to/script.js',
+    #         'auto-include': True,
+    #     },
+    #     . . .
+    # }
 }
 
 CORS_ORIGIN_ALLOW_ALL = True
