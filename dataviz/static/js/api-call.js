@@ -1,26 +1,19 @@
 /* Project specific Javascript goes here. */
+var csrfToken   = $('input[name="csrfmiddlewaretoken"]').val();
+$.ajaxSetup({headers: {"X-CSRFToken": csrfToken}});
 
-function ajaxCall(url, map){
-  console.log(url);
-  var csrfToken   = $('input[name="csrfmiddlewaretoken"]').val();
-  $.ajaxSetup({headers: {"X-CSRFToken": csrfToken}});
+var mapPoints;
 
-  $.ajax({
-     url: url,
-     data: {
-        format: 'json'
-     },
-     error: function() {
-        console.log('error');
-     },
-     dataType: 'json',
-     success: function(data) {
-       addPointsMap(data, map);
+var map = L.map('map').setView([38.911206,-77.028961], 13);
 
-     },
-     type: 'GET'
-  });
-}
+mapLink =
+    '<a href="http://openstreetmap.org">OpenStreetMap</a>';
+L.tileLayer(
+    'https://a.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; ' + mapLink + ' Contributors',
+    maxZoom: 18,
+}).addTo(map);
+
 
 function onEachFeature(feature, layer) {
     // does this feature have a property named popupContent?
@@ -29,19 +22,21 @@ function onEachFeature(feature, layer) {
     }
 }
 
-function addPointsMap(data, map){
-  var mapPoints = data.results;
-  var myLayer = L.geoJson(mapPoints,{
-      onEachFeature: onEachFeature} ).addTo(map);
-}
 
-function traffic_api_call(url, map){
-  ajaxCall(url, map);
-}
-
-
-function map_init_basic(map, options) {
-  console.log('js loaded');
-  var url = '../api/v1/parkingviolations/?rp_plate_state=&violation_code=&holiday=1&body_style=&ticket_date_range_start=2013-12-01&ticket_date_range_end=2015-12-22&ticket_single_date=&ticket_day_of_week='
-  traffic_api_call(url, map);
-}
+$.ajax({
+   url: '../api/v1/parkingviolations/?rp_plate_state=DC&ticket_single_date=2013-12-26',
+   data: {
+      format: 'json'
+   },
+   error: function() {
+      console.log('error');
+   },
+   dataType: 'json',
+   success: function(data) {
+      var mapPoints = data.results;
+      var myLayer = L.geoJson(mapPoints,{
+          onEachFeature: onEachFeature
+    } ).addTo(map);
+   },
+   type: 'GET'
+});

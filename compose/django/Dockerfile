@@ -1,11 +1,10 @@
-FROM python:3.5
+FROM python:3.5.2
 
 ENV PYTHONUNBUFFERED 1
 
 RUN apt-get update \
     && apt-get upgrade -y \
-    && apt-get install -y \
-    && apt-get -y install binutils libproj-dev gdal-bin
+    && apt-get install -y libproj-dev gdal-bin python-gdal libgeoip1
 
 # Requirements have to be pulled and installed here, otherwise caching won't work
 COPY ./requirements /requirements
