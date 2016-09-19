@@ -26,7 +26,7 @@ class Command(BaseCommand):
 
     def load_files_to_db(self, url, filename):
         if ParkingViolationDataFiles.objects.all().filter(url=url, imported=True):
-            self.stdout.write(self.style.INFO('%s already in database' % filename))
+            self.stdout.write(self.style.NOTICE('%s already in database' % filename))
         else:
             self.stdout.write(self.style.SUCCESS('Downloading and parsing: %s' % filename))
             parking_violations = load_data_csv_to_db(url, filename)

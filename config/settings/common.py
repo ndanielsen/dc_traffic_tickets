@@ -42,6 +42,7 @@ THIRD_PARTY_APPS = (
     'cachalot', # caching plug in
     'leaflet',
     'corsheaders',
+    'explorer',
 )
 
 # Apps specific for this project go here.

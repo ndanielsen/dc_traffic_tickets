@@ -14,5 +14,5 @@ class ParkingViolationAdmin(admin.OSMGeoAdmin):
 
 @admin.register(ParkingViolationDataFiles)
 class ParkingViolationDataFilesAdmin(admin.GeoModelAdmin):
+    list_display = ('filename', 'imported', 'date_added' )
     readonly_fields = ('imported',)
-    pass
