@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^', include('dataviz.urls')),
     url(r'^api/v1/', include('api.urls')),
     url(r'^api-token-auth/', auth_views.obtain_auth_token),
+    url(r'^explorer/', include('explorer.urls'), name='explorer'),
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
