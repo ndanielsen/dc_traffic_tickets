@@ -24,7 +24,10 @@
     <a class="btn btn-primary" href="{% url 'users:update' %}">My Info</a>
     <a class="btn btn-primary" href="{% url 'account_email' %}">E-Mail</a>
     <!-- Your Stuff: Custom user template urls -->
-    <a class="btn btn-primary" href="{% url 'users:apikey' %}">My Api Key</a>
+    {% if request.user.is_staff %}
+      <a class="btn btn-primary" href="{% url 'users:apikey' %}">My Api Key</a>
+      <a class="btn btn-primary" href="{% url 'explorer_playground' %}">SQL Explorer</a>
+    {% endif %}
   </div>
 
 </div>

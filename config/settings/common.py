@@ -281,3 +281,6 @@ LEAFLET_CONFIG = {
 }
 
 CORS_ORIGIN_ALLOW_ALL = True
+EXPLORER_SCHEMA_INCLUDE_APPS = ('api.ParkingViolation',' api.ParkingViolationDataFiles',)
+# EXPLORER_SCHEMA_EXCLUDE_APPS = ('allauth.**','dc_traffic_tickets.**', 'django.contrib.auth', 'django.contrib.contenttypes', 'django.contrib.sessions', 'django.contrib.admin')
+EXPLORER_TOKEN = 'DEMO_TOKEN'

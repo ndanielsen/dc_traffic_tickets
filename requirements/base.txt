@@ -56,3 +56,4 @@ django-leaflet==0.19.0
 pandas==0.18.1
 django-cors-headers==1.1.0
 pandas==0.18.1
+django-sql-explorer==1.0
