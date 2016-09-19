@@ -40,10 +40,15 @@ class Command(BaseCommand):
                 self.stdout.write(self.style.SUCCESS('Starting bulk create of %s' % filename))
                 ParkingViolation.objects.bulk_create(bulk_objs, batch_size=10000)
 
-                data_file = ParkingViolationDataFiles(url=url, filename=filename, imported=True)
+                data_file, created = ParkingViolationDataFiles.objects.get_or_create(url=url, filename=filename)
+                data_file.imported = True
                 data_file.save()
 
                 self.stdout.write(self.style.SUCCESS('Successful insert of %s' % filename))
             else:
-                data_file = ParkingViolationDataFiles(url=url, filename=filename, imported=False)
+                data_file, created = ParkingViolationDataFiles.objects.get_or_create(url=url, filename=filename)
+                if created:
+                    data_file.imported = False
+                    data_file.save()
+
                 data_file.save()
