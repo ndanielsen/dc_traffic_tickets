@@ -30,7 +30,7 @@ class ParkingViolation(models.Model):
 
 class ParkingViolationDataFiles(models.Model):
     class Meta:
-        verbose_name_plural = "Parking Violations Datasets"
+        verbose_name_plural = "Source Datasets - Parking Violations"
 
     filename = models.CharField(max_length=100, blank=False)
     url = models.URLField(blank=False)
