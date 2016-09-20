@@ -13,4 +13,5 @@ class GeoParkingViolationSerializer(GeoFeatureModelSerializer):
     class Meta:
         model = ParkingViolation
         geo_field = "point"
-        include =  ('violation_code', 'ticket_issue_datetime')
+        fields =  ('violation_code', 'ticket_issue_datetime')
+        # exclude =  ('address_id', 'address', 'streetsegid', 'xcoord', 'ycoord', 'filename', 'rowid', 'objectid', 'violation_description' )
