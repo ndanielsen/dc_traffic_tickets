@@ -93,7 +93,7 @@ class ApiStatusViewSet(viewsets.ReadOnlyModelViewSet):
 
 class ParkingViolationsNearProximity(viewsets.ReadOnlyModelViewSet):
     queryset = ParkingViolation.objects.all()
-    serializer_class = serializers.ParkingViolationSerializer
+    serializer_class = serializers.GeoParkingViolationSerializer
     class Meta:
         model = ParkingViolation
 
@@ -111,7 +111,9 @@ class ParkingViolationsNearProximity(viewsets.ReadOnlyModelViewSet):
         # location = Point(float(lat_long['long']), float(lat_long['lat']), srid=4326)
 
         # queryset = ParkingViolation.objects.filter(point__distance_lte=(location, Distance(km=1))) #.order_by('distance')[:100]
-        queryset = ParkingViolation.objects.all().filter(point__distance_lte=(pnt, 10))
+        queryset = ParkingViolation.objects.all().filter(point__distance_lte=(pnt, 10))[:25]
+
+        # queryset = queryset.values('point', 'violation_code', 'ticket_issue_datetime')
 
         page = self.paginate_queryset(queryset)
         if page is not None:
