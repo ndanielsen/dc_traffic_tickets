@@ -28,7 +28,7 @@ class Command(BaseCommand):
         filename = options['filename']
         url = options['url']
 
-        if ParkingViolationDataFiles.objects.filter(url=url):
+        if ParkingViolationDataFiles.objects.filter(url=url, filename=filename, imported=False):
             raise Exception('Already added file')
         else:
             self.stdout.write(self.style.SUCCESS('Downloading and parsing: %s' % filename))
