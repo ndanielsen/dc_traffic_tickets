@@ -256,6 +256,18 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 500
 }
 
+REST_FRAMEWORK['DEFAULT_AUTHENTICATION_CLASSES'] = (
+    'rest_framework.authentication.TokenAuthentication',
+    'rest_framework.authentication.SessionAuthentication',
+    )
+
+REST_FRAMEWORK['DEFAULT_PERMISSION_CLASSES'] = (
+        'rest_framework.permissions.IsAuthenticated',
+    )
+
+
+
+
 
 LEAFLET_CONFIG = {
     # conf here
