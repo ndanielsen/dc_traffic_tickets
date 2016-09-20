@@ -26,6 +26,7 @@
     <!-- Your Stuff: Custom user template urls -->
     {% if request.user.is_staff %}
       <a class="btn btn-primary" href="{% url 'users:apikey' %}">My Api Key</a>
+      <a class="btn btn-primary" href="{% url 'parkingviolations-list' %}">REST API Explorer</a>
       <a class="btn btn-primary" href="{% url 'explorer_playground' %}">SQL Explorer</a>
     {% endif %}
   </div>

@@ -24,7 +24,7 @@
     <div>
         <em>Command line: </em>
         <br>
-        curl -X GET http://192.168.99.100:8000/api/v1/parkingviolations/ -H 'Authorization: Token {{form.key.value}}'
+        curl -X GET https://www.dctraffictickets.net/api/v1/parkingviolations/ -H 'Authorization: Token {{form.key.value}}'
         <br><br>
     </div>
 
@@ -33,7 +33,7 @@
           <br>
           import requests <br>
           import pandas as pd <br>
-          url = 'http://192.168.99.100:8000/api/v1/parkingviolations/' <br>
+          url = 'https://www.dctraffictickets.net/api/v1/parkingviolations/' <br>
           h = {'Authorization': 'Token: {{form.key.value}}'} <br>
           r = requests.get(url, headers=h) <br>
           data = r.json() # convert to python dictionary
