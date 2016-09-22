@@ -35,7 +35,7 @@ class Command(BaseCommand):
             parking_violations = load_data_csv_to_db(url, filename)
             self.stdout.write(self.style.SUCCESS('Parsed %s' % filename))
 
-            bulk_objs = prepare_bulk_loading_of_parking_violations(parking_violations)
+            bulk_objs = prepare_bulk_loading_of_parking_violations(parking_violations, url, filename)
 
             # bulk insert
             self.stdout.write(self.style.SUCCESS('Bulk insert of %s' % filename))

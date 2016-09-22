@@ -23,6 +23,7 @@ class ParkingViolation(models.Model):
     xcoord = models.IntegerField()
     ycoord = models.IntegerField()
     filename = models.CharField(max_length=50)
+    source_filename = models.ForeignKey('ParkingViolationDataFiles', on_delete=models.CASCADE, blank=True, null=True,)
     ticket_issue_datetime = models.DateTimeField(db_index=True)
 
     def __str__(self):

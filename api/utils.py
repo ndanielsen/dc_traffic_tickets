@@ -1,6 +1,7 @@
 import pandas as pd
 from collections import namedtuple
 from api.models import ParkingViolation
+from api.models import ParkingViolationDataFiles
 from django.contrib.gis.geos import Point
 
 # Parking named tuple
@@ -62,9 +63,9 @@ def load_data_csv_to_db(url, filename):
     except:
         print('Some error in the file')
 
-def prepare_bulk_loading_of_parking_violations(parking_violations):
+def prepare_bulk_loading_of_parking_violations(parking_violations, url):
     bulk_objs = []
-
+    filename_obj, created = ParkingViolationDataFiles.objects.get_or_create(url=url, filefilename=filename)
     for violation in parking_violations:
         obj = ParkingViolation(
                 point = Point((float(violation.x), float(violation.y))),
@@ -80,7 +81,7 @@ def prepare_bulk_loading_of_parking_violations(parking_violations):
                 streetsegid = violation.streetsegid,
                 xcoord = violation.xcoord,
                 ycoord = violation.ycoord,
-                filename = violation.filename,
+                source_filename = filename_obj,
                 ticket_issue_datetime = violation.ticket_issue_datetime,
                 )
         bulk_objs.append(obj)

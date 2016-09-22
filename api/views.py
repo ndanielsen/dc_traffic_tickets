@@ -109,7 +109,7 @@ class ParkingViolationsNearProximity(viewsets.ReadOnlyModelViewSet):
 
         pnt = Point(longitude, latitude, srid=4326)
 
-        queryset = ParkingViolation.objects.all().values('point', 'violation_code', 'ticket_issue_datetime').filter(point__distance_lte=(pnt, D(m=10)))[:100]
+        queryset = ParkingViolation.objects.all().values('point', 'violation_code', 'ticket_issue_datetime').filter(point__distance_lte=(pnt, D(m=10)))[:25]
 
         page = self.paginate_queryset(queryset)
         if page is not None:
