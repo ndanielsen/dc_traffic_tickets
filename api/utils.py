@@ -63,9 +63,9 @@ def load_data_csv_to_db(url, filename):
     except:
         print('Some error in the file')
 
-def prepare_bulk_loading_of_parking_violations(parking_violations, url):
+def prepare_bulk_loading_of_parking_violations(parking_violations, url, filename):
     bulk_objs = []
-    filename_obj, created = ParkingViolationDataFiles.objects.get_or_create(url=url, filefilename=filename)
+    filename_obj, created = ParkingViolationDataFiles.objects.get_or_create(url=url, filename=filename)
     for violation in parking_violations:
         obj = ParkingViolation(
                 point = Point((float(violation.x), float(violation.y))),

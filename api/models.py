@@ -40,3 +40,16 @@ class ParkingViolationDataFiles(models.Model):
 
     def __str__(self):
         return str(self.filename)
+
+class ParkingViolationFine(models.Model):
+    class Meta:
+        verbose_name_plural = "Parking Violations Fines"
+
+    code = models.CharField(max_length=10)
+    description = models.CharField(max_length=100, blank=False)
+    short_description = models.CharField(max_length=50, blank=False)
+    fine = models.FloatField()
+
+
+
+        # CODE,DESC,SHORTDESC,FINE
