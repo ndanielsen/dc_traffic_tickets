@@ -2,6 +2,7 @@ import pandas as pd
 from collections import namedtuple
 from api.models import ParkingViolation
 from api.models import ParkingViolationDataFiles
+from api.models import ParkingViolationFine
 from django.contrib.gis.geos import Point
 
 # Parking named tuple
@@ -67,12 +68,13 @@ def prepare_bulk_loading_of_parking_violations(parking_violations, url, filename
     bulk_objs = []
     filename_obj, created = ParkingViolationDataFiles.objects.get_or_create(url=url, filename=filename)
     for violation in parking_violations:
+        fine_obj, created = ParkingViolationFine.objects.get_or_create(code=violation.violation_code)
         obj = ParkingViolation(
                 point = Point((float(violation.x), float(violation.y))),
                 objectid = violation.objectid,
                 rowid = violation.rowid,
                 holiday = violation.holiday,
-                violation_code = violation.violation_code,
+                violation_key = fine_obj,
                 violation_description = violation.violation_description,
                 address = violation.location,
                 rp_plate_state = violation.rp_plate_state,
