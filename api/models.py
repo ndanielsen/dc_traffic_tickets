@@ -8,6 +8,7 @@ class ParkingViolation(models.Model):
     """
     class Meta:
         verbose_name_plural = "Parking Violations"
+        index_together = [ ["violation_key", "violation_code"], ['filename','source_filename']]
 
     point = models.PointField()
     objectid = models.IntegerField()

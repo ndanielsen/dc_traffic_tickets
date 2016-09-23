@@ -11,5 +11,5 @@ class Command(BaseCommand):
             for obj in ParkingViolation.objects.values('filename').distinct():
                 filename = obj['filename']
                 data_file_obj = ParkingViolationDataFiles.objects.get(filename=filename)
-                ParkingViolation.objects.filter(filename=filename, source_filename=None).update(source_filename=data_file_obj)
+                ParkingViolation.objects.select_related('filename', 'source_filename').filter(filename=filename, source_filename=None).update(source_filename=data_file_obj)
                 self.stdout.write(self.style.SUCCESS(data_file_obj))
