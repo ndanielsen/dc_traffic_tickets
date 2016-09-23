@@ -3,6 +3,11 @@ from collections import namedtuple
 from api.models import ParkingViolation
 from api.models import ParkingViolationDataFiles
 from api.models import ParkingViolationFine
+from api.models import AddressID
+from api.models import StreetSegID
+from api.models import BodyStyle
+from api.models import PlateState
+
 from django.contrib.gis.geos import Point
 
 # Parking named tuple
@@ -69,6 +74,11 @@ def prepare_bulk_loading_of_parking_violations(parking_violations, url, filename
     filename_obj, created = ParkingViolationDataFiles.objects.get_or_create(url=url, filename=filename)
     for violation in parking_violations:
         fine_obj, created = ParkingViolationFine.objects.get_or_create(code=violation.violation_code)
+        addressid_obj, created = AddressID.objects.get_or_create(address_id=violation.address_id)
+        streetsegid_obj, created = StreetSegID.objects.get_or_create(streetsegid=violation.streetsegid)
+        body_style_obj, created = BodyStyle.objects.get_or_create(body_style=violation.body_style)
+        platestate_obj, created = PlateState.objects.get_or_create(rp_plate_state=violation.rp_plate_state)
+
         obj = ParkingViolation(
                 point = Point((float(violation.x), float(violation.y))),
                 objectid = violation.objectid,
@@ -77,12 +87,16 @@ def prepare_bulk_loading_of_parking_violations(parking_violations, url, filename
                 violation_key = fine_obj,
                 violation_description = violation.violation_description,
                 address = violation.location,
-                rp_plate_state = violation.rp_plate_state,
-                body_style = violation.body_style,
-                address_id = violation.address_id,
-                streetsegid = violation.streetsegid,
+
+                rp_plate_state_key = platestate_obj,
+                body_style_key = body_style_obj,
+
+                address_id_key = addressid_obj,
+                streetsegid_key = streetsegid_obj,
+
                 xcoord = violation.xcoord,
                 ycoord = violation.ycoord,
+
                 source_filename = filename_obj,
                 ticket_issue_datetime = violation.ticket_issue_datetime,
                 )
