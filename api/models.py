@@ -28,10 +28,10 @@ class ParkingViolation(models.Model):
     body_style = models.CharField(max_length=5, db_index=True)
     body_style_key = models.ForeignKey('BodyStyle', on_delete=models.CASCADE, blank=True, null=True,)
 
-    address_id = models.IntegerField(blank=True, null=True)
+    address_id = models.IntegerField(blank=True, null=True, db_index=True)
     address_id_key = models.ForeignKey('AddressID', on_delete=models.CASCADE, blank=True, null=True,)
 
-    streetsegid = models.FloatField(blank=True, null=True)
+    streetsegid = models.FloatField(blank=True, null=True, db_index=True)
     streetsegid_key = models.ForeignKey('StreetSegID', on_delete=models.CASCADE, blank=True, null=True,)
 
     xcoord = models.IntegerField(blank=True, null=True)
@@ -47,7 +47,7 @@ class ParkingViolationDataFiles(models.Model):
     class Meta:
         verbose_name_plural = "Source Datasets - Parking Violations"
 
-    filename = models.CharField(max_length=100, null=True, blank=False)
+    filename = models.CharField(max_length=100, null=True, blank=False, db_index=True)
     url = models.URLField(null=True, blank=False )
     imported = models.BooleanField(default=False)
     date_added = models.DateTimeField(auto_now_add=True)

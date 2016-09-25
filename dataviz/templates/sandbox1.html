@@ -13,20 +13,20 @@
     <link rel="stylesheet" href="{% static 'css/single_day_leaflet.css' %}" />
 
     {% leaflet_js %}
-    <script type="text/javascript" src="{% static 'js/api-call.js' %}"></script>
     {% endblock %}
 c
     {% block content %}
     <div class="content">
-      <header><h2>500 Parking Tickets on 2013-12-20</h1></header>
+      <header><h2>500 Parking Tickets on 2015-05-30</h1></header>
     </div>
-      {% leaflet_map "map" callback="window.map_init_basic" %}
+      {% leaflet_map "map" %}
       {% endblock content %}
 
 
 
 {% block javascript %}
 {{ block.super }}
+  <script type="text/javascript" src="{% static 'js/api-call.js' %}"></script>
 
 <!--  STATIC Content lives in same app folder -->
 {% endblock javascript %}

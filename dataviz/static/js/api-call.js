@@ -1,6 +1,4 @@
 /* Project specific Javascript goes here. */
-var csrfToken   = $('input[name="csrfmiddlewaretoken"]').val();
-$.ajaxSetup({headers: {"X-CSRFToken": csrfToken}});
 
 var mapPoints;
 
@@ -23,8 +21,11 @@ function onEachFeature(feature, layer) {
 }
 
 
+var csrfToken   = $('input[name="csrfmiddlewaretoken"]').val();
+$.ajaxSetup({headers: {"X-CSRFToken": csrfToken, "Authorization": 'Token: 3574c6f4785f8a0f52420f2e256946f5eb912883'} });
+
 $.ajax({
-   url: '../api/v1/parkingviolations/?rp_plate_state=DC&ticket_single_date=2013-12-26',
+   url: '../api/v1/parkingviolations/?rp_plate_state=DC&ticket_single_date=2015-05-30',
    data: {
       format: 'json'
    },

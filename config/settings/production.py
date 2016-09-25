@@ -14,6 +14,8 @@ from __future__ import absolute_import, unicode_literals
 from boto.s3.connection import OrdinaryCallingFormat
 from django.utils import six
 
+import os
+import raven
 
 from .common import *  # noqa
 
@@ -227,3 +229,10 @@ ADMIN_URL = env('DJANGO_ADMIN_URL')
 # Your production stuff: Below this line define 3rd party library settings
 
 ### REST FRAMEWORK
+
+RAVEN_CONFIG = {
+    'dsn': env('SENTRY_DSN'),
+    # If you are using git, you can also automatically configure the
+    # release based on the git info.
+    # 'release': raven.fetch_git_sha(os.path.dirname(os.path.dirname((os.path.dirname(__file__))))),
+}
