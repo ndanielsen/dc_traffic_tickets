@@ -20,9 +20,8 @@ function onEachFeature(feature, layer) {
     }
 }
 
-
 var csrfToken   = $('input[name="csrfmiddlewaretoken"]').val();
-$.ajaxSetup({headers: {"X-CSRFToken": csrfToken, "Authorization": 'Token: 3574c6f4785f8a0f52420f2e256946f5eb912883'} });
+$.ajaxSetup({headers: {"X-CSRFToken": csrfToken} });
 
 $.ajax({
    url: '../api/v1/parkingviolations/?rp_plate_state=DC&ticket_single_date=2015-05-30',

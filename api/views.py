@@ -10,6 +10,9 @@ from rest_framework import filters
 from rest_framework import generics
 from rest_framework import viewsets
 
+
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
+
 from django.utils import dateparse
 
 from api import serializers
@@ -84,7 +87,7 @@ class ApiStatusViewSet(viewsets.ReadOnlyModelViewSet):
     """
     Endpoint for heartbeat checking, including the status and version.
     """
-
+    permission_classes = (IsAuthenticatedOrReadOnly,)
     def list(self, request):
         return Response({
             "status": "ok",

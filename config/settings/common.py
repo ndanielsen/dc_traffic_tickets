@@ -44,6 +44,7 @@ THIRD_PARTY_APPS = (
     'corsheaders',
     'explorer',
     'raven.contrib.django.raven_compat',
+    'pygmentify',
 )
 
 # Apps specific for this project go here.
@@ -267,9 +268,6 @@ REST_FRAMEWORK['DEFAULT_PERMISSION_CLASSES'] = (
     )
 
 
-
-
-
 LEAFLET_CONFIG = {
     # conf here
     'TILES': 'https://stamen-tiles.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.png',
@@ -301,3 +299,7 @@ CORS_ORIGIN_ALLOW_ALL = False
 EXPLORER_SCHEMA_EXCLUDE_APPS = ('allauth.account', 'allauth.socialaccount', 'rest_framework.authtoken',  'corsheaders', 'django.contrib.sites', 'explorer', 'django.contrib.auth', 'django.contrib.contenttypes', 'django.contrib.sessions', 'django.contrib.admin', 'dc_traffic_tickets.users', 'django.contrib.gis',)
 EXPLORER_TOKEN_AUTH_ENABLED = True
 EXPLORER_TOKEN = 'DEMO_TOKEN'
+
+
+PYGMENTIFY_CSSCLASS = 'code-highlight'
+PYGMENTIFY_STYLE = 'xcode'
