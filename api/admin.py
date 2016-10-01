@@ -15,7 +15,7 @@ class ParkingViolationAdmin(LeafletGeoAdmin):
     # openlayers_url = 'https://cdnjs.cloudflare.com/ajax/libs/ol3/3.18.2/ol.js'
     modifiable = False
     list_display = ('ticket_issue_datetime',)
-    # readonly_fields =  ('ticket_issue_datetime','address_id', 'address', 'rp_plate_state', 'violation_code',  'body_style', 'holiday', 'streetsegid', 'xcoord', 'ycoord', 'filename', 'rowid', 'objectid', 'violation_description' )
+    readonly_fields =  ('address', 'ticket_issue_datetime','address_id', 'rp_plate_state', 'violation_code',  'body_style', 'holiday', 'streetsegid', 'xcoord', 'ycoord', 'data_filename', 'rowid', 'objectid', 'violation_description' )
     settings_overrides = {
        'DEFAULT_ZOOM': 14,
        'NO_GLOBALS' : False,

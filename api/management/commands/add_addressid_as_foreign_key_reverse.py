@@ -10,7 +10,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         with override_settings(CACHALOT_ENABLED=False):
-            for obj in ParkingViolation.objects.values('address_id').distinct():
+            for obj in ParkingViolation.objects.values('address_id').distinct().reverse():
                 code_name = obj['address_id']
                 data_code_obj, created = AddressID.objects.get_or_create(address_id=code_name)
 
