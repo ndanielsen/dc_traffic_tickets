@@ -6,13 +6,13 @@ services:
       context: .
       dockerfile: ./compose/django/Dockerfile
     user: django
-    depends_on:
-      - redis
+    # depends_on:
+    #   - redis
     command: /gunicorn.sh
     env_file: .env
-
-  redis:
-    image: redis:latest
+  #
+  # redis:
+  #   image: redis:latest
 
   nginx-secure:
     build: ./compose/nginx-secure
