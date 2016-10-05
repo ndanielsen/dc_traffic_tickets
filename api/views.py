@@ -114,6 +114,7 @@ class ParkingViolationsNearProximity(viewsets.ReadOnlyModelViewSet):
 
         queryset = ParkingViolation.objects.all().values('point', 'violation_code', 'ticket_issue_datetime').filter(point__distance_lte=(pnt, D(m=10)))[:25]
 
+
         page = self.paginate_queryset(queryset)
         if page is not None:
             serializer = self.get_serializer(page, many=True)
