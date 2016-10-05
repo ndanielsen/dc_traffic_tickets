@@ -57,3 +57,8 @@ pandas==0.18.1
 django-cors-headers==1.1.0
 pandas==0.18.1
 django-sql-explorer==1.0
+
+raven==5.27.1
+django-pygmentify==0.2.3
+xlsxwriter==0.8.5
+tinys3==0.1.11

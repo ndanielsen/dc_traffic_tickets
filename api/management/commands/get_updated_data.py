@@ -34,9 +34,9 @@ class Command(BaseCommand):
             if parking_violations is not None:
                 self.stdout.write(self.style.SUCCESS('Successful parsing of %s' % filename))
 
-                bulk_objs = prepare_bulk_loading_of_parking_violations(parking_violations)
+                self.stdout.write(self.style.SUCCESS('Prepare bulk create of %s' % filename))
+                bulk_objs = prepare_bulk_loading_of_parking_violations(parking_violations, url, filename)
 
-                # bulk insert
                 self.stdout.write(self.style.SUCCESS('Starting bulk create of %s' % filename))
                 ParkingViolation.objects.bulk_create(bulk_objs, batch_size=10000)
 

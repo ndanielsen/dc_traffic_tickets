@@ -14,6 +14,8 @@ from __future__ import absolute_import, unicode_literals
 from boto.s3.connection import OrdinaryCallingFormat
 from django.utils import six
 
+import os
+import raven
 
 from .common import *  # noqa
 
@@ -53,7 +55,7 @@ SESSION_COOKIE_HTTPONLY = True
 SECURE_SSL_REDIRECT = env.bool('DJANGO_SECURE_SSL_REDIRECT', default=True)
 CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_HTTPONLY = True
-X_FRAME_OPTIONS = 'DENY'
+# X_FRAME_OPTIONS = 'DENY' # allow sql explorer xframe to work
 
 # SITE CONFIGURATION
 # ------------------------------------------------------------------------------
@@ -146,17 +148,22 @@ DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
 # CACHING
 # ------------------------------------------------------------------------------
 # Heroku URL does not pass the DB number, so we parse it in
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django_redis.cache.RedisCache',
+#         'LOCATION': '{0}/{1}'.format(env('REDIS_URL', default='redis://127.0.0.1:6379'), 0),
+#         'OPTIONS': {
+#             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+#             'IGNORE_EXCEPTIONS': True,  # mimics memcache behavior.
+#                                         # http://niwinz.github.io/django-redis/latest/#_memcached_exceptions_behavior
+#         }
+#     }
+# }
 CACHES = {
-    'default': {
-        'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': '{0}/{1}'.format(env('REDIS_URL', default='redis://127.0.0.1:6379'), 0),
-        'OPTIONS': {
-            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-            'IGNORE_EXCEPTIONS': True,  # mimics memcache behavior.
-                                        # http://niwinz.github.io/django-redis/latest/#_memcached_exceptions_behavior
-        }
-    }
+    'default': env.cache('REDIS_URL'),
 }
+
+
 
 
 # LOGGING CONFIGURATION
@@ -227,3 +234,10 @@ ADMIN_URL = env('DJANGO_ADMIN_URL')
 # Your production stuff: Below this line define 3rd party library settings
 
 ### REST FRAMEWORK
+
+RAVEN_CONFIG = {
+    'dsn': env('SENTRY_DSN'),
+    # If you are using git, you can also automatically configure the
+    # release based on the git info.
+    # 'release': raven.fetch_git_sha(os.path.dirname(os.path.dirname((os.path.dirname(__file__))))),
+}

@@ -80,7 +80,4 @@ TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
 # Your local stuff: Below this line define 3rd party library settings
 
-REST_FRAMEWORK['DEFAULT_AUTHENTICATION_CLASSES'] = (
-    'rest_framework.authentication.TokenAuthentication',
-    'rest_framework.authentication.SessionAuthentication',
-    )
+CACHALOT_ENABLED = False
