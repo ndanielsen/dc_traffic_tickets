@@ -13,6 +13,8 @@ RUN pip install -r /requirements/production.txt \
     && groupadd -r django \
     && useradd -r -g django django
 
+RUN pip install -e git+https://github.com/groveco/django-sql-explorer.git#egg=explorer
+
 COPY . /app
 RUN chown -R django /app
 
