@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+
+{% block body_class %}template-blogindexpage{% endblock %}
+{{ page.title }}
+{% block content %}
+    {% if blog_entries %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+              {% for entry in blog_entries %}
+                <div class="post-preview">
+                    <a href="{{ entry.url }}">
+                        <h2 class="post-title">
+                            {{ entry.title }}
+                        </h2>
+                        <h3 class="post-subtitle">
+                            {{ entry.intro }}
+                        </h3>
+                    </a>
+                    <p class="post-meta">Posted by <a href="{% url 'about' %}">{{ entry.owner.first_name }}</a> on {{ entry.date }}
+                      {% if entry.tags.all|length != 0 %}
+                        in
+                        {% for tag in entry.tags.all %}
+                          <a href='#'> {{ tag.name }}, </a>
+                        {%  endfor  %}
+                      {% endif %}
+                    </p>
+
+                </div>
+              {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+{% endblock %}

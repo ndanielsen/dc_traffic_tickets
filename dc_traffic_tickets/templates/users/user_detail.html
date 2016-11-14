@@ -27,6 +27,7 @@
     {% if request.user.is_staff %}
       <a class="btn btn-primary" href="{% url 'explorer_playground' %}">SQL Explorer</a>
       <a class="btn btn-primary" href="{% url 'admin:index' %}">Traffic Admin</a>
+      <a class="btn btn-primary" href="{% url 'wagtailadmin_home' %}">CSM Admin</a>
 
     {% endif %}
     {% if request.user.is_authenticated %}

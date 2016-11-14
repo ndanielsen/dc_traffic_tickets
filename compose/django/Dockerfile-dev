@@ -10,6 +10,7 @@ RUN apt-get update \
 COPY ./requirements /requirements
 RUN pip install -r /requirements/local.txt
 
+RUN pip install --upgrade pip
 RUN pip install -e git+https://github.com/groveco/django-sql-explorer.git#egg=explorer
 
 COPY ./compose/django/entrypoint.sh /entrypoint.sh

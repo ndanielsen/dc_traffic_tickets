@@ -21,6 +21,22 @@ env = environ.Env()
 # ------------------------------------------------------------------------------
 DJANGO_APPS = (
     # Default Django apps:
+    'blog',
+    'wagtail.wagtailforms',
+    'wagtail.wagtailredirects',
+    'wagtail.wagtailembeds',
+    'wagtail.wagtailsites',
+    'wagtail.wagtailusers',
+    'wagtail.wagtailsnippets',
+    'wagtail.wagtaildocs',
+    'wagtail.wagtailimages',
+    'wagtail.wagtailsearch',
+    'wagtail.wagtailadmin',
+    'wagtail.wagtailcore',
+
+    'taggit',
+    'modelcluster',
+
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -58,7 +74,6 @@ LOCAL_APPS = (
     'rest_framework.authtoken',
     'api',
     'dataviz',
-
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -75,6 +90,9 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'wagtail.wagtailcore.middleware.SiteMiddleware',
+    'wagtail.wagtailredirects.middleware.RedirectMiddleware',
 )
 
 # MIGRATIONS CONFIGURATION
@@ -300,6 +318,36 @@ EXPLORER_SCHEMA_EXCLUDE_APPS = ('allauth.account', 'allauth.socialaccount', 'res
 EXPLORER_TOKEN_AUTH_ENABLED = True
 EXPLORER_TOKEN = 'DEMO_TOKEN'
 
-
+########### PYGMENTS Config
 PYGMENTIFY_CSSCLASS = 'code-highlight'
 PYGMENTIFY_STYLE = 'xcode'
+
+
+########### WAGTAIL CONFIG
+WAGTAIL_SITE_NAME = 'Stark Industries Skunkworks'
+WAGTAIL_APPEND_SLASH = False
+
+# Override the search results template for wagtailsearch
+WAGTAILSEARCH_RESULTS_TEMPLATE = 'cms/search_results.html'
+WAGTAILSEARCH_RESULTS_TEMPLATE_AJAX = 'cms/includes/search_listing.html'
+
+# # Replace the search backend
+# WAGTAILSEARCH_BACKENDS = {
+#     'default': {
+#         'BACKEND': 'wagtail.wagtailsearch.backends.elasticsearch',
+#         'INDEX': 'cms'
+#     }
+# }
+
+WAGTAIL_ADMIN_URL = env('WAGTAIL_ADMIN_URL')
+WAGTAILEMBEDS_EMBEDLY_KEY = env('WAGTAILEMBEDS_EMBEDLY_KEY')
+
+WAGTAILIMAGES_MAX_UPLOAD_SIZE = 20 * 1024 * 1024  # i.e. 20MB
+WAGTAIL_PASSWORD_MANAGEMENT_ENABLED = True
+WAGTAILADMIN_NOTIFICATION_FROM_EMAIL = 'noreply@m.dctraffictickets.net'
+
+WAGTAILADMIN_NOTIFICATION_USE_HTML = True
+WAGTAIL_ENABLE_UPDATE_CHECK = True
+PASSWORD_REQUIRED_TEMPLATE = 'cms/password_required.html'
+TAGGIT_CASE_INSENSITIVE = True
+WAGTAIL_ALLOW_UNICODE_SLUGS = True

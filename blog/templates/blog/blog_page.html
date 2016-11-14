@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load staticfiles i18n %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}template-blogpage{% endblock %}
+
+{% block header %}
+  <header class="intro-header" style="background-image: url({% static 'img/post-bg.jpg' %})">
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                  <div class="post-heading">
+                      <h1>{{ page.title }}</h1>
+                      <h2 class="subheading">{{ page.intro }}</h2>
+                      <span class="meta">Posted by <a href="{% url 'about' %}">{{ page.owner.first_name }}</a> on {{ page.date }}
+                      {% if page.tags.all|length != 0 %}
+                        in
+                        {% for tag in page.tags.all %}
+                          <a href='#'> {{ tag.name }}, </a>
+                        {%  endfor  %}
+                      {% endif %}
+
+                      </span>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </header>
+{% endblock header %}
+
+{% block content %}
+    <article>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            {% if page.main_image %}
+              {% image page.main_image width-400 %}
+            {% endif %}
+            {{ page.body|richtext }}
+          </div>
+        </div>
+      </div>
+    </article>
+{% endblock %}
