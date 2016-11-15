@@ -13,7 +13,6 @@ CMD ["supervisord", "-c", "/etc/supervisord.conf"]
 
 # Requirements have to be pulled and installed here, otherwise caching won't work
 COPY ./requirements /requirements
-
 RUN pip install --upgrade pip
 RUN pip install -r /requirements/production.txt \
     && groupadd -r django \

@@ -1,4 +1,5 @@
 {% load staticfiles i18n %}
+{% load wagtailcore_tags %}
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
         <div class="container-fluid">
@@ -18,7 +19,10 @@
                         <a href="/">Home</a>
                     </li>
                     <li>
-                        <a href="{% url 'about' %}">About</a>
+                        <a href="/about-project">About</a>
+                    </li>
+                    <li>
+                        <a href="/getting-started">Getting Started</a>
                     </li>
                   {% if request.user.is_authenticated %}
                     <li>

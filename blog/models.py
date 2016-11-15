@@ -35,7 +35,7 @@ class BlogIndex(Page):
     def get_context(self, request):
         context = super(BlogIndex, self).get_context(request)
         # Add extra variables and return the updated context
-        freeformpage = FreeFormBlogPage.objects.child_of(self).live().order_by('-date')[:10]
+        freeformpage = FreeFormBlogPage.objects.child_of(self).live().filter(in_blog_index=True).order_by('-date')[:10]
         blogpage = BlogPage.objects.child_of(self).live().order_by('-date')[:10]
         all_posts = list(chain(freeformpage, blogpage))
         context['blog_entries'] = all_posts
@@ -82,6 +82,7 @@ class FreeFormBlogPage(Page):
     date = models.DateField("Post date")
     intro = models.CharField(max_length=250)
     tags = ClusterTaggableManager(through=FreeFormBlogPageTag, blank=True)
+    in_blog_index = models.BooleanField("Include in Blog Index", default=True)
 
     body = StreamField([
         ('heading', blocks.CharBlock(classname="full title")),
@@ -110,6 +111,7 @@ class FreeFormBlogPage(Page):
 
     promote_panels = [
         MultiFieldPanel(Page.promote_panels, "Common page configuration"),
+        FieldPanel('in_blog_index')
     ]
 
     parent_page_types = ['blog.BlogIndex']

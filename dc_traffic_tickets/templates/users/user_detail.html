@@ -1,6 +1,27 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block header %}
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url({% static 'img/account_header.png' %})">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <br><br><br>
+                    <div class="site-heading" style="padding-top:15px">
+                        <h2>My Profile</h2>
+                        <hr class="small">
+                        <span class="subheading">Tools to Explore the Data</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+{% endblock header %}
+
 {% block title %}User: {{ object.username }}{% endblock %}
 
 {% block content %}
@@ -27,7 +48,7 @@
     {% if request.user.is_staff %}
       <a class="btn btn-primary" href="{% url 'explorer_playground' %}">SQL Explorer</a>
       <a class="btn btn-primary" href="{% url 'admin:index' %}">Traffic Admin</a>
-      <a class="btn btn-primary" href="{% url 'wagtailadmin_home' %}">CSM Admin</a>
+      <a class="btn btn-primary" href="{% url 'wagtailadmin_home' %}">CMS Admin</a>
 
     {% endif %}
     {% if request.user.is_authenticated %}
