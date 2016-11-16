@@ -5,14 +5,14 @@
 {% block body_class %}template-blogpage{% endblock %}
 
 {% block header %}
-  <header class="intro-header" style="background-image: url({% static 'img/post-bg.jpg' %})">
+  <header class="intro-header" style="background-image: url({% static 'img/account_header.png' %})">
       <div class="container">
           <div class="row">
               <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                   <div class="post-heading">
                       <h1>{{ page.title }}</h1>
                       <h2 class="subheading">{{ page.intro }}</h2>
-                      <span class="meta">Posted by <a href="{% pageurl page.about_project %}">{{ page.owner.first_name }}</a> on {{ page.date }}
+                      <span class="meta">Posted by {{ page.owner.first_name }}</a> on {{ page.date }}
                       {% if page.tags.all|length != 0 %}
                         in
                         {% for tag in page.tags.all %}
