@@ -145,8 +145,15 @@ hr.small {
 .intro-header .site-heading,
 .intro-header .post-heading,
 .intro-header .page-heading {
-  padding: 100px 0 50px;
+  padding: 50px 0 50px;
   color: white;
+}
+@media only screen and (min-width: 768px) {
+  .intro-header .site-heading,
+  .intro-header .post-heading,
+  .intro-header .page-heading {
+    padding: 125px 0;
+  }
 }
 .intro-header .site-heading,
 .intro-header .page-heading {
@@ -169,7 +176,7 @@ hr.small {
 @media only screen and (min-width: 768px) {
   .intro-header .site-heading h1,
   .intro-header .page-heading h1 {
-    font-size: 80px;
+    font-size: 70px;
   }
 }
 .intro-header .post-heading h1 {
