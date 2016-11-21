@@ -16,8 +16,9 @@
   {% if redirect_field_value %}
   <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
   {% endif %}
+  <p> We provide this site as a public service to our users. By clicking "Sign Up" and using this site, this constitutes your unconditional agreement to follow and be bound by our <a href="https://www.dctraffictickets.net/terms-of-use">Terms of Use</a> and <a href="https://www.dctraffictickets.net/privacy-policy">Privacy Policy.</a>
+  <p>If you have questions regarding these policies, please <a href="mailto:legal@dctraffictickets.net">contact us.</a></p>
   <button class="btn btn-primary" type="submit">{% trans "Sign Up" %} &raquo;</button>
 </form>
 
 {% endblock %}
-

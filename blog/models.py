@@ -36,7 +36,7 @@ class BlogIndex(Page):
         context = super(BlogIndex, self).get_context(request)
         # Add extra variables and return the updated context
         freeformpage = FreeFormBlogPage.objects.child_of(self).live().filter(in_blog_index=True).order_by('-date')[:10]
-        blogpage = BlogPage.objects.child_of(self).live().order_by('-date')[:10]
+        blogpage = BlogPage.objects.child_of(self).live().filter(in_blog_index=True).order_by('-date')[:10]
         all_posts = list(chain(freeformpage, blogpage))
         context['blog_entries'] = all_posts
         return context
@@ -53,6 +53,7 @@ class BlogPage(Page):
     intro = models.CharField(max_length=250)
     body = RichTextField(blank=True)
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
+    in_blog_index = models.BooleanField("Include in Blog Index", default=True)
 
     search_fields = Page.search_fields + [
         index.SearchField('intro'),
@@ -73,6 +74,7 @@ class BlogPage(Page):
         MultiFieldPanel(Page.promote_panels, "Common page configuration"),
         ImageChooserPanel('main_image'),
         FieldPanel('tags'),
+        FieldPanel('in_blog_index')
     ]
 
     parent_page_types = ['blog.BlogIndex']

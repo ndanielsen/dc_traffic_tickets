@@ -10,94 +10,101 @@
 
 {% block title %}Your API Key{% endblock %}
 
-
-
 {% block content %}
-    <h3>API Key</h3>
 
-    <form class="form-horizontal" method="post" action="{% url 'users:apikey' %}">
-        {% csrf_token %}
-        {{ form|crispy }}
-        <div class="control-group">
-          <div class="controls">
-            {% if not form.key.value %}
-            <em>API Terms of Service</em> <br>
-            By agreeing and using this API, you agree to: <br>
-            * Be a general good person with this access and not abuse this API (ie: by making more than one request per 5 seconds); <br>
-            * Not doing anything illegal with this data; <br>
-            * Understand that this data might contain errors or omissions; <br>
-            * and hold this website, owner and/or contributors completely without fault, liability or responsibility for any losses, claims or damages which may arise because of the use of this data. <br><br>
+  <article>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
-            <button type="submit" name="action" value="reset" class="btn btn-success">Agree and Create Token</button>
+        <h3>API Key</h3>
 
-            {% else %}
-            <button type="submit" name="action" value="reset" class="btn btn-warning">Reset Token</button>
-            <button type="submit" name="action" value="delete"  class="btn btn-danger">Delete Token</button>
-            {% endif %}
+        <form class="form-horizontal" method="post" action="{% url 'users:apikey' %}">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <div class="control-group">
+              <div class="controls">
+                {% if not form.key.value %}
+                <em>API Terms of Service</em> <br>
+                By agreeing and using this API, you agree to: <br>
+                * Be a general good person with this access and not abuse this API (ie: by making more than one request per 5 seconds); <br>
+                * Not doing anything illegal with this data; <br>
+                * Understand that this data might contain errors or omissions; <br>
+                * and hold this website, owner and/or contributors completely without fault, liability or responsibility for any losses, claims or damages which may arise because of the use of this data. <br><br>
+
+                <button type="submit" name="action" value="reset" class="btn btn-success">Agree and Create Token</button>
+
+                {% else %}
+                <button type="submit" name="action" value="reset" class="btn btn-warning">Reset Token</button>
+                <button type="submit" name="action" value="delete"  class="btn btn-danger">Delete Token</button>
+                {% endif %}
+              </div>
+            </div>
+        </form>
+        <br><br>
+
+        {% if form.key.value %}
+
+        <h4>How to interact with the API</h4>
+        <em>Some code snippets to get you started developing</em>
+        <br><br>
+          <div>
+              <h5>Python with the requests library: </h5>
+    <br>
+              {% filter pygmentify %}
+              <pre class="python"><code>
+    import requests
+    url = 'https://www.dctraffictickets.net/api/v1/parkingviolations/'
+    h = {'Authorization': 'Token: {{form.key.value}}'}
+    r = requests.get(url, headers=h)
+    data = r.json() # convert to python dictionary
+              </code></pre>
+              {% endfilter %}
           </div>
+
+
+          <div>
+            <h5> Javascript with jquery</h5>
+    <br>
+            {% filter pygmentify %}
+            <pre class="javascript"><code>
+    $.ajaxSetup({headers: {"Authorization": "Token: {{form.key.value}}"}});
+    $.ajax({
+       url: "../api/v1/parkingviolations/?rp_plate_state=DC&ticket_single_date=2015-05-30",
+       data: {
+          format: "json"
+       },
+       error: function() {
+          console.log('error');
+       },
+       dataType: "json",
+       success: function(data) {
+         console.log(data.response);
+         // do something cool here
+       },
+       type: "GET"
+    });
+              </code></pre>
+              {% endfilter %}
+
+          </div>
+
+        <div>
+            <h5>Command line: </h5>
+    <br>
+            {% filter pygmentify %}
+            <pre class="Bash"><code>
+            curl -X GET https://www.dctraffictickets.net/api/v1/parkingviolations/ -H "Authorization: Token {{form.key.value}} \"
+              </code></pre>
+              {% endfilter %}
         </div>
-    </form>
-    <br><br>
 
-    {% if form.key.value %}
 
-    <h4>How to interact with the API</h4>
-    <em>Some code snippets to get you started developing</em>
-    <br><br>
-      <div>
-          <h5>Python with the requests library: </h5>
-<br>
-          {% filter pygmentify %}
-          <pre class="python"><code>
-import requests
-url = 'https://www.dctraffictickets.net/api/v1/parkingviolations/'
-h = {'Authorization': 'Token: {{form.key.value}}'}
-r = requests.get(url, headers=h)
-data = r.json() # convert to python dictionary
-          </code></pre>
-          {% endfilter %}
+
+        {% endif %}
+        </div>
       </div>
-
-
-      <div>
-        <h5> Javascript with jquery</h5>
-<br>
-        {% filter pygmentify %}
-        <pre class="javascript"><code>
-$.ajaxSetup({headers: {"Authorization": "Token: {{form.key.value}}"}});
-$.ajax({
-   url: "../api/v1/parkingviolations/?rp_plate_state=DC&ticket_single_date=2015-05-30",
-   data: {
-      format: "json"
-   },
-   error: function() {
-      console.log('error');
-   },
-   dataType: "json",
-   success: function(data) {
-     console.log(data.response);
-     // do something cool here
-   },
-   type: "GET"
-});
-          </code></pre>
-          {% endfilter %}
-
-      </div>
-
-    <div>
-        <h5>Command line: </h5>
-<br>
-        {% filter pygmentify %}
-        <pre class="Bash"><code>
-        curl -X GET https://www.dctraffictickets.net/api/v1/parkingviolations/ -H "Authorization: Token {{form.key.value}} \"
-          </code></pre>
-          {% endfilter %}
     </div>
-
-
-
-    {% endif %}
-
+  </article>
 
 {% endblock %}

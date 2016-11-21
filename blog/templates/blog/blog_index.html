@@ -19,7 +19,7 @@
                             {{ entry.intro }}
                         </h3>
                     </a>
-                    <p class="post-meta">Posted by <a href="{% slugurl page.about %}">{{ entry.owner.first_name }}</a> on {{ entry.date }}
+                    <p class="post-meta">Posted by {{ entry.owner.first_name }} on {{ entry.date }}
                       {% if entry.tags.all|length != 0 %}
                         in
                         {% for tag in entry.tags.all %}
