@@ -71,10 +71,10 @@ class BlogPage(Page):
     ]
 
     promote_panels = [
+        FieldPanel('in_blog_index'),
         MultiFieldPanel(Page.promote_panels, "Common page configuration"),
         ImageChooserPanel('main_image'),
         FieldPanel('tags'),
-        FieldPanel('in_blog_index')
     ]
 
     parent_page_types = ['blog.BlogIndex']

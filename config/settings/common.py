@@ -58,7 +58,6 @@ THIRD_PARTY_APPS = (
     'cachalot', # caching plug in
     'leaflet',
     'corsheaders',
-    'explorer',
     'raven.contrib.django.raven_compat',
     'pygmentify',
 )
@@ -324,7 +323,7 @@ PYGMENTIFY_STYLE = 'xcode'
 
 
 ########### WAGTAIL CONFIG
-WAGTAIL_SITE_NAME = 'Stark Industries Skunkworks'
+WAGTAIL_SITE_NAME = 'DC Traffic Data Project'
 WAGTAIL_APPEND_SLASH = False
 
 # Override the search results template for wagtailsearch

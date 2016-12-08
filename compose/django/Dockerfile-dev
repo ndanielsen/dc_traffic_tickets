@@ -11,8 +11,6 @@ COPY ./requirements /requirements
 RUN pip install --upgrade pip
 RUN pip install -r /requirements/local.txt
 
-RUN pip install -e git+https://github.com/groveco/django-sql-explorer.git#egg=explorer
-
 COPY ./compose/django/entrypoint.sh /entrypoint.sh
 RUN sed -i 's/\r//' /entrypoint.sh
 RUN chmod +x /entrypoint.sh

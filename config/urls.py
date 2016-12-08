@@ -28,8 +28,6 @@ urlpatterns = [
     # Your stuff: custom urls includes go here
     url(r'^api/v1/', include('api.urls')),
     url(r'^api-token-auth/', auth_views.obtain_auth_token),
-    url(r'^explorer/', include('explorer.urls'), name='explorer'),
-
 
     url(settings.WAGTAIL_ADMIN_URL, include(wagtailadmin_urls)),
     url(r'^search/', include(wagtailsearch_urls)),
