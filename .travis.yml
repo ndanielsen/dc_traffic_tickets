@@ -16,11 +16,7 @@ language: python
 python:
  - "3.5"
 env:
- - POSTGRES_USER=dc_traffic_tickets
- - DJANGO_ADMIN_URL=testadmin
- - DJANGO_SETTINGS_MODULE=config.settings.test
- - DJANGO_ACCOUNT_ALLOW_REGISTRATION=True
- - WAGTAIL_ADMIN_URL=wagtail_admin
+ - DJANGO_SETTINGS_MODULE=config.settings.test POSTGRES_USER=dc_traffic_tickets DJANGO_ADMIN_URL=testadmin DJANGO_ACCOUNT_ALLOW_REGISTRATION=True WAGTAIL_ADMIN_URL=wagtail_admin
 
 install: "pip install -r requirements/test.txt"
 
