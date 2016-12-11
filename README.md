@@ -22,7 +22,7 @@ Move into the directory with:
 
 Copy environment variable settings:
 
-`cp sample.env .env`
+`cp local.env .env`
 
 Build the docker image with:
 
@@ -55,28 +55,45 @@ Take note of the ip for your local machine:
 
 Checkout the IP + ':8000' in your browser, or example ** http://192.168.99.100:8000/
 
-#### Load Static Data Geojson and Shapefiles
-
-`docker-compose -f dev.yml run django python manage.py download_small_parking_data`
-
-
 #### Let's now get our database set up with:
 
 `docker-compose -f dev.yml run django python manage.py makemigrations`
 
 `docker-compose -f dev.yml run django python manage.py migrate`
 
+#### Check that Things are Working Correctly
+Have a look by navigating to YOUR_IP:8000
 
-#### Now that it's runnings, let's seed the database with sample data. This will load 100k randomly selected parking tickets to the database.
+You should see "Welcome to your new Wagtail site!"
 
-`docker-compose -f dev.yml run django python manage.py load_100k_parking_sample`
-
-
-#### Let's create a superuser by so that we can checkout the site admin:
+#### Let's create a superuser by so that we can checkout the site wagtail admin and get things set up:
 
 `docker-compose -f dev.yml run django python manage.py createsuperuser`
 
-Have a look by navigating to YOUR_IP:8000/admin
+Have a look by navigating to YOUR_IP:8000/wagtail_adminlogin and logging in
+
+#### Create a blog index page
+
+YOUR_IP:8000/wagtail_adminpages/add/blog/blogindex/2/
+
+#### Set the Site root to the index page that you just created.
+
+In site settings, change the Root page to the blog index page that you just created.
+
+YOUR_IP:8000/wagtail_adminsites/
+
+When you hit save and go back to the homepage, the blogging functionality will be set up.
+
+
+### Loading Data Up
+
+#### Load Static Data Geojson and Shapefiles
+
+`docker-compose -f dev.yml run django python manage.py download_small_parking_data`
+
+#### Now that things are up and running, let's seed the database with sample data. This will load 100k randomly selected parking tickets to the database.
+
+`docker-compose -f dev.yml run django python manage.py load_100k_parking_sample`
 
 #### Now that we've logged into admin, let's check out the rest api
 
@@ -86,13 +103,9 @@ Please note that for api calls the page size response is limited to 500 items, o
 
 ### Where do I get started? (Front end)
 
-You'll notice on the landing page that there are numbered sandboxes pages for dataviz (or anything that you want to try out)
+Data viz elements are located in the dataviz folder. Functionality related to the blog and wagtail admin are in the blog folder
 
-All front end pieces are located at in the dataviz folder.
-
-Sandbox html pagers are located at dc_traffic_tickets/dataviz/templates
-
-CSS and JS assets are located at dc_traffic_tickets/dataviz/static/
+CSS and JS assets are located at in the /static/ folders.
 
 All templates inherit from a base template which is located:
 dc_traffic_tickets/dc_traffic_tickets/templates/base.html
@@ -104,8 +117,7 @@ dc_traffic_tickets/dc_traffic_tickets/templates/base.html
 `docker-compose -f dev.yml run django python manage.py load_new_csv --filename parking_violations_may_2016 --url http://opendata.dc.gov/datasets/b86079c597e14bc199f2fff0025a1f77_4.csv`
 
 
-
-### Where do I get started? (Back end)
+### Where do I get started? (Back end data stuff)
 
 All the major backend pieces are located in dc_traffic_tickets/api/
 
@@ -116,7 +128,7 @@ Add as appropriate to `requirements/`  and to config/settings/ under installed a
 ### Experimental load all parking data
 
 If you're feeling brave, here's a basic and very slow management command to
-download and all of the parting 12 million rows of data.
+download and all of the parting 13 million rows of parking violation data.
 
 ** Warning ** it will take minutes to download the large file and potentially a few hours to load and might be missing some rows.
 
