@@ -1,11 +1,11 @@
-sudo: true
-# services:
-#   - postgis
-# addons:
-#   postgresql: "9.5"
+language: python
+python:
+ - "3.5"
 
+sudo: true
 before_install:
  - sudo apt-get update -qq
+ - sudo apt-get install -qq --no-install-recommends postgresql-9.5-postgis-2.3=2.3.1+dfsg-1.pgdg80+1 postgresql-9.5-postgis-2.3-scripts=2.3.1+dfsg-1.pgdg80+1 postgis=2.3.1+dfsg-1.pgdg80+1
  - sudo apt-get install -qq build-essential gettext python-dev zlib1g-dev libpq-dev xvfb
  - sudo apt-get install -qq libtiff4-dev libjpeg8-dev libfreetype6-dev liblcms1-dev libwebp-dev
  - sudo apt-get install -qq graphviz-dev python-setuptools python3-dev python-virtualenv python-pip
@@ -13,9 +13,6 @@ before_install:
  - sudo apt-get install -qq libsqlite3-dev libxml2 libxml2-dev libssl-dev libbz2-dev wget curl llvm
  - sudo apt-get install -qq libproj-dev gdal-bin python-gdal libgeoip1
 
-language: python
-python:
- - "3.5"
 env:
  - DJANGO_SETTINGS_MODULE=config.settings.test POSTGRES_USER=dc_traffic_tickets DJANGO_ADMIN_URL=testadmin DJANGO_ACCOUNT_ALLOW_REGISTRATION=True WAGTAIL_ADMIN_URL=wagtail_admin
 
