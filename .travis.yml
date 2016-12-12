@@ -5,6 +5,7 @@ addons:
   postgresql: "9.5"
 
 before_install:
+ - sudo -E apt-get -yq --no-install-suggests --no-install-recommends --force-yes install postgresql-9.5-postgis-2.3
  - sudo apt-get update -qq
  - sudo apt-get install -qq build-essential gettext python-dev zlib1g-dev libpq-dev xvfb
  - sudo apt-get install -qq libtiff4-dev libjpeg8-dev libfreetype6-dev liblcms1-dev libwebp-dev
@@ -12,6 +13,7 @@ before_install:
  - sudo apt-get install -qq firefox automake libtool libreadline6 libreadline6-dev libreadline-dev
  - sudo apt-get install -qq libsqlite3-dev libxml2 libxml2-dev libssl-dev libbz2-dev wget curl llvm
  - sudo apt-get install -qq libproj-dev gdal-bin python-gdal libgeoip1
+
 language: python
 python:
  - "3.5"
