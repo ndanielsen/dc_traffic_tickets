@@ -1,12 +1,11 @@
 sudo: true
-services:
-  - postgresql
-addons:
-  postgresql: "9.5"
+# services:
+#   - postgis
+# addons:
+#   postgresql: "9.5"
 
 before_install:
  - sudo apt-get update -qq
- - sudo apt-get install -y --no-install-recommends postgresql-9.5-postgis-2.3=2.3.1+dfsg-1.pgdg80+1 postgresql-9.5-postgis-2.3-scripts=2.3.1+dfsg-1.pgdg80+1 postgis=2.3.1+dfsg-1.pgdg80+1
  - sudo apt-get install -qq build-essential gettext python-dev zlib1g-dev libpq-dev xvfb
  - sudo apt-get install -qq libtiff4-dev libjpeg8-dev libfreetype6-dev liblcms1-dev libwebp-dev
  - sudo apt-get install -qq graphviz-dev python-setuptools python3-dev python-virtualenv python-pip
@@ -23,9 +22,8 @@ env:
 install: "pip install -r requirements/test.txt"
 
 before_script:
-before_script:
   - psql -c 'create database travis_postgis;' -U postgres
-  # - psql -c 'CREATE EXTENSION postgis;' -U postgres -d travis_postgis
-  # - psql -c 'CREATE EXTENSION postgis_topology;' -U postgres -d travis_postgis
+  - psql -c 'CREATE EXTENSION postgis;' -U postgres -d travis_postgis
+  - psql -c 'CREATE EXTENSION postgis_topology;' -U postgres -d travis_postgis
 
 script: 'python manage.py test --settings=config.settings.test'
