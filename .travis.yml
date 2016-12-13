@@ -12,7 +12,8 @@ python:
 sudo: true
 before_install:
  - sudo apt-get update -qq
- - export DEBIAN_FRONTEND=noninteractive; sudo -E apt-get -yq update &>> ~/apt-get-update.log; sudo -E apt-get -yq --no-install-suggests --no-install-recommends --force-yes install postgresql-9.5-postgis-2.3
+ - sudo -E apt-get -yq update &>> ~/apt-get-update.log
+ - sudo -E apt-get -yq --no-install-suggests --no-install-recommends --force-yes install postgresql-9.5-postgis-2.3
  - sudo apt-get install -qq build-essential gettext python-dev zlib1g-dev libpq-dev xvfb
  - sudo apt-get install -qq libtiff4-dev libjpeg8-dev libfreetype6-dev liblcms1-dev libwebp-dev
  - sudo apt-get install -qq graphviz-dev python-setuptools python3-dev python-virtualenv python-pip
