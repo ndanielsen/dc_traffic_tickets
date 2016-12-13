@@ -10,7 +10,6 @@ python:
 
 sudo: required
 before_install:
- - sudo apt-get install -qq wget
  - wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | sudo apt-key add -
  - sudo apt-get update -qq
  - sudo apt-get install -qq build-essential gettext python-dev zlib1g-dev libpq-dev xvfb
