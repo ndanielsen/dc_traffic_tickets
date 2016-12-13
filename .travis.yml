@@ -17,7 +17,7 @@ before_install:
  - sudo apt-get install -qq graphviz-dev python-setuptools python3-dev python-virtualenv python-pip
  - sudo apt-get install -qq firefox automake libtool libreadline6 libreadline6-dev libreadline-dev
  - sudo apt-get install -qq libsqlite3-dev libxml2 libxml2-dev libssl-dev libbz2-dev wget curl llvm
- - sudo apt-get install -qq libproj-dev gdal-bin python-gdal libgeoip1 libgdal1
+ - sudo apt-get install -qq libproj-dev gdal-bin python-gdal libgeoip1
  - sudo apt-get install -qq postgresql-9.5-postgis-2.2 pgadmin3 postgresql-contrib-9.5
 
 install:
