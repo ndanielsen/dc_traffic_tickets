@@ -1,12 +1,13 @@
 services:
   - postgresql
 
+
 addons:
-  postgresql: "9.5"
-   apt:
-     packages:
-      - gdal-bin
-      - postgresql-9.5-postgis-2.3
+ postgresql: "9.5"
+ apt:
+   packages:
+    - gdal-bin
+    - postgresql-9.5-postgis-2.3
 
 language: python
 python:
@@ -33,7 +34,7 @@ env:
 
 install: "pip install -r requirements/test.txt"
 
-before_script: 
+before_script:
   - psql -c 'create database travis_postgis;' -U postgres
   - psql -U postgres -c "create extension postgis;" -d travis_postgis
 
