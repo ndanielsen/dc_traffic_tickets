@@ -34,7 +34,6 @@ env:
 install: "pip install -r requirements/test.txt"
 
 before_script:
-  before_script:
   - psql -c 'create database travis_postgis;' -U postgres
   - psql -U postgres -c "create extension postgis;" -d travis_postgis
 
