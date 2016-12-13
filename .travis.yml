@@ -1,8 +1,8 @@
 addons:
-  postgresql: "9.4"
+  postgresql: "9.5"
   apt:
     packages:
-      - postgresql-9.4-postgis-2.1
+      - postgresql-9.5-postgis-2.3
 
 
 language: python
@@ -13,13 +13,17 @@ sudo: true
 before_install:
  - sudo apt-get update -qq
  - sudo -E apt-get -yq update &>> ~/apt-get-update.log
- - sudo -E apt-get -yq --no-install-suggests --no-install-recommends --force-yes install postgresql-9.4-postgis-2.2 postgresql-9.4-postgis-2.2-scripts
+ - sudo -E apt-get -yq --no-install-suggests --no-install-recommends --force-yes install postgresql-9.5-postgis-2.3 postgresql-9.5-postgis-2.3-scripts
  - sudo apt-get install -qq build-essential gettext python-dev zlib1g-dev libpq-dev xvfb
  - sudo apt-get install -qq libtiff4-dev libjpeg8-dev libfreetype6-dev liblcms1-dev libwebp-dev
  - sudo apt-get install -qq graphviz-dev python-setuptools python3-dev python-virtualenv python-pip
  - sudo apt-get install -qq firefox automake libtool libreadline6 libreadline6-dev libreadline-dev
  - sudo apt-get install -qq libsqlite3-dev libxml2 libxml2-dev libssl-dev libbz2-dev wget curl llvm
  - sudo apt-get install -qq libproj-dev gdal-bin python-gdal libgeoip1
+
+install:
+ - sudo apt-get install -y postgresql-9.5-postgis-2.3
+ - sudo service postgresql restart
 
 env:
  - DJANGO_SETTINGS_MODULE=config.settings.test POSTGRES_USER=dc_traffic_tickets DJANGO_ADMIN_URL=testadmin DJANGO_ACCOUNT_ALLOW_REGISTRATION=True WAGTAIL_ADMIN_URL=wagtail_admin
