@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/ndanielsen/dc_traffic_tickets.svg?branch=master)](https://travis-ci.org/ndanielsen/dc_traffic_tickets)
+
 DC Traffic Tickets - https://www.dctraffictickets.net/
 ==============================
 
