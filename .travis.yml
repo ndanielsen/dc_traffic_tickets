@@ -4,13 +4,20 @@ addons:
     packages:
       - postgresql-9.5-postgis-2.3
 
+services:
+  - postgresql
 
 language: python
 python:
  - "3.5"
 
-sudo: true
+sudo: required
 before_install:
+ # Allow connections to PG from our Docker instance
+ - echo "host all all 0.0.0.0/0 md5" | sudo tee -a /etc/postgresql/9.5/main/pg_hba.conf
+ - echo "listen_addresses = '*'" | sudo tee -a /etc/postgresql/9.5/main/postgresql.conf
+ - sudo service postgresql stop
+ - sudo service postgresql start 9.5
  - sudo apt-get update -qq
  - sudo -E apt-get -yq update &>> ~/apt-get-update.log
  - sudo -E apt-get -yq --no-install-suggests --no-install-recommends --force-yes install postgresql-9.5-postgis-2.3 postgresql-9.5-postgis-2.3-scripts
