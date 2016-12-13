@@ -5,7 +5,7 @@ python:
 sudo: true
 before_install:
  - sudo apt-get update -qq
- - sudo apt-get install -qq --no-install-recommends postgresql-9.5-postgis-2.3=2.3.1+dfsg-1.pgdg80+1 postgresql-9.5-postgis-2.3-scripts=2.3.1+dfsg-1.pgdg80+1 postgis=2.3.1+dfsg-1.pgdg80+1
+ - sudo apt-get install -qq --no-install-recommends postgresql-9.5-postgis-2.2 postgresql-contrib-9.5
  - sudo apt-get install -qq build-essential gettext python-dev zlib1g-dev libpq-dev xvfb
  - sudo apt-get install -qq libtiff4-dev libjpeg8-dev libfreetype6-dev liblcms1-dev libwebp-dev
  - sudo apt-get install -qq graphviz-dev python-setuptools python3-dev python-virtualenv python-pip
