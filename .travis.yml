@@ -30,7 +30,7 @@ before_install:
 
 install:
  - sudo apt-get install -y postgresql-9.5-postgis-2.3
- - sudo service postgresql restart
+ - sudo service postgresql restart 9.5
 
 env:
  - DJANGO_SETTINGS_MODULE=config.settings.test POSTGRES_USER=dc_traffic_tickets DJANGO_ADMIN_URL=testadmin DJANGO_ACCOUNT_ALLOW_REGISTRATION=True WAGTAIL_ADMIN_URL=wagtail_admin
